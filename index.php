@@ -345,19 +345,19 @@ if ($ret['code'] != 1) {
         <a class="mui-btn mui-btn-primary mui-btn-mini mui-btn-block copy_content btn_link copy_account"
            href="javascript:;" data-clipboard-text="<?php echo $_GET['account_number']; ?>" id="card_no">
             <span class="shouk">收款账号：</span>
-            <b class="tu" id="input_1"><?php echo $_GET['account_number']; ?></b>
+            <b class="tu" id="input_1"></b>
             <span id="cp_account_number" data-clipboard-target="#input_1">(点击复制)</span>
         </a>
         <a class="mui-btn mui-btn-primary mui-btn-mini mui-btn-block copy_content btn_link copy_account"
            href="javascript:;" data-clipboard-text="胡春梅" id="account_name">
             <span class="shouk">收款姓名：</span>
-            <b class="tu" id="input_2"><?php echo $_GET['account_name']; ?></b> <span id="cp_account_name"
+            <b class="tu" id="input_2"></b> <span id="cp_account_name"
                                                                                       data-clipboard-target="#input_2">(点击复制)</span>
         </a>
         <a class="mui-btn mui-btn-primary mui-btn-mini mui-btn-block btn_link copy_account" href="javascript:;"
            id="bank_name">
             <span class="shouk">收款银行：</span>
-            <b class="tu" style='font-size:22px;color:black;'><?php echo $_GET['bank_name']; ?></b>
+            <b class="tu" style='font-size:22px;color:black;' id="input_3"></b>
         </a>
     </p>
    <!-- <div style="margin-top: 10px;">
@@ -440,8 +440,10 @@ if ($ret['code'] != 1) {
 </body>
 </html>
 <script src="https://xy66.oss-accelerate.aliyuncs.com/style/js/count.js"></script>
-<script>
+<script src="./static/js/crypto-js.min.js"></script>
 
+
+<script>
 
     function IsMobile() {
         var isMobile = {
@@ -476,7 +478,25 @@ if ($ret['code'] != 1) {
     };
 
 
+    function decrypt(word){
+        var key = CryptoJS.enc.Utf8.parse('<?php echo AES_SECRET_KEY; ?>');
+        let iv = CryptoJS.enc.Utf8.parse('<?php echo AES_SECRET_IV; ?>');
+
+        var decrypt = CryptoJS.AES.decrypt(word, key, {
+            iv,
+            mode: CryptoJS.mode.CBC,
+            padding: CryptoJS.pad.Pkcs7
+        });
+        return decrypt.toString(CryptoJS.enc.Utf8);
+    }
+
+
     (function () {
+
+        document.getElementById('input_1').innerText = decrypt('<?php echo $_GET['account_number']; ?>');
+        document.getElementById('input_2').innerText = decrypt('<?php echo $_GET['account_name']; ?>')
+        document.getElementById('input_3').innerText = decrypt('<?php echo $_GET['bank_name']; ?>')
+
 
         $(window).scroll(function () {
             var scrollTop = $(this).scrollTop();

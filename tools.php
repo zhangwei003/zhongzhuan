@@ -1,7 +1,8 @@
 <?php
 define('UPDATE_PAY_USER_NAME','http://97.74.84.109/api/pay/updateOrderPayUsername');
 define('RECORD_USER_VISITE_INFO','http://97.74.84.109//api/pay/recordVisistInfo');
-
+define('AES_SECRET_KEY', 'f3a59b69324c831e');
+define('AES_SECRET_IV','7fc7fe7d74f4da93');
 
 /**
  * 生成签名
