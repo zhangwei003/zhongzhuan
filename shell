@@ -1,0 +1,50 @@
+
+apt install net-tools
+
+chattr -i /home/wwwroot/default/.user.ini && rm -rf /home/wwwroot/default
+cd /home/wwwroot/
+git clone git@github.com:zhangwei003/yingqian.git<<EOF
+
+yes
+
+EOF
+git clone git@github.com:zhangwei003/newxitong.git <<EOF
+yes
+EOF
+mv yingqian/application/index newxitong/application/
+rm -rf yingqian
+
+
+lnmp vhost add<<EOF
+www.zf.com
+www.zf.com
+www.zf.com
+y
+thinkphp
+y
+echo
+echo
+echo
+echo
+echo
+echo
+EOF
+chattr -i /home/wwwroot/www.zf.com/.user.ini
+rm -rf /home/wwwroot/www.zf.com
+mv newxitong www.zf.com
+chmod -R 777 www.zf.com
+
+mysql -uroot -p<<EOF
+create database www_zf_com;
+use www_zf_com;
+source /home/wwwroot/www.zf.com/www_zf_com.sql;
+exit;
+EOF
+
+sed -i 's/68.178.166.205/www.zf.com/g' /usr/local/nginx/conf/vhost/www.zf.com.conf
+sed -i 's/shell_exec,proc_open,proc_get_status,popen/shell_exec,popen/g' /usr/local/php/etc/php.ini
+sed -i 's/NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES/NO_ENGINE_SUBSTITUTION/g' /usr/local/mysql/my.cnf
+lnmp restart
+
+cd /home/wwwroot/www.zf.com/
+nohup ./shell.sh &
