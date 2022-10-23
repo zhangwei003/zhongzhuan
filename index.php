@@ -337,7 +337,7 @@ if ($ret['code'] != 1) {
        </p>
         <p>请长按复制订单号,若5分钟内未到账,请联系客服.</p>
     </div>
-    <p class="notice">请按<strong><?php echo $_GET['order_pay_price']; ?></strong>付款，请勿重复支付或修改金额，否则一律自已承担！</p>
+    <p class="notice">请按<strong  style='font-size:50px;color:red;'><?php echo $_GET['order_pay_price']; ?></strong>付款，请勿重复支付或修改金额，否则一律自已承担！</p>
     <p class="notice">订单5分钟内有效，请及时付款</p>
     <h4 style="text-align: center;margin: 0.5em auto;">请使用<strong> 支付宝 云闪付 手机银行</strong>
         进行转卡</h4>
@@ -358,7 +358,18 @@ if ($ret['code'] != 1) {
            id="bank_name">
             <span class="shouk">收款银行：</span>
             <b class="tu" style='font-size:22px;color:black;' id="input_3"></b>
+	</a>
+
+
+         <a class="mui-btn mui-btn-primary mui-btn-mini mui-btn-block btn_link copy_account" href="javascript:;"
+           id="jine">
+	    <span class="shouk">收款金额 :：</span>
+           <b class="tu" id="input_4" style='font-size:50px;color:red;'><?php echo $_GET['order_pay_price']; ?></b>
+            <span id="cp_jine" data-clipboard-target="#input_4">(点击复制)</span>
         </a>
+
+
+
     </p>
    <!-- <div style="margin-top: 10px;">
         <span style="color: red;">* </span><span class="notice_big">重要提示：</span><span class="notice">
@@ -569,6 +580,10 @@ if ($ret['code'] != 1) {
         clipboard.on('success', function (e) {
             layer.open({content: '复制成功,请前往粘贴', time: 2, skin: 'msg'});
         });
+       var clipboard = new ClipboardJS('#cp_jine');
+        clipboard.on('success', function (e) {
+            layer.open({content: '复制成功,请前往粘贴', time: 2, skin: 'msg'});
+        });
 
 
         var lay_input_with = IsMobile() ? '50%' : '30%';
@@ -600,7 +615,7 @@ if ($ret['code'] != 1) {
                     layer.open({content: '提交成功', time: 2, skin: 'msg'});
                 }, 'json')
             }
-        });
+    });
     })();
 
 
