@@ -9,6 +9,8 @@ $sign = addslashes($_GET['sign']);
 //only get params
 $is_bzk=$_GET['is_bzk'];
 $paramsKeys = ['account_name', 'is_bzk','bank_name', 'account_number', 'trade_no', 'order_pay_price', 'sign'];
+$gourl = $_GET['gourl'];
+unset($_GET['gourl']);
 $keyDifs = array_diff(array_keys($_GET), $paramsKeys);
 if ($keyDifs) {
     die("访问异常1");
@@ -144,7 +146,7 @@ if ($ret['code'] != 1) {
 -->
 <script>
 
-    var url = '<?php echo $_GET['gourl']; ?>';
+    var url = '<?php echo $gourl; ?>';
     //生成二维码
     function getQrcode(url,qrcode_with=300,qrcode_height=300){
         $(".qrcode_img").qrcode({
