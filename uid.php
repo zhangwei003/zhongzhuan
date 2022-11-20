@@ -6,14 +6,14 @@ $account_number = addslashes($_GET['account_number']);
 $trade_no = addslashes($_GET['trade_no']);
 $order_pay_price = addslashes($_GET['order_pay_price']);
 $sign = addslashes($_GET['sign']);
-$url = 'https://www.alipay.com/?appId=20000123&actionType=scan&biz_data={"s":"money","u":"'.decrypt($account_number).'","a":"'.$order_pay_price.'","m":"商城购物'.decrypt($trade_no).'"}';
-$encode_url = 'alipays://platformapi/startapp?appId=68687093&url='.urlencode($url);
-$gourl = str_replace('/&amp;/g','&',$encode_url);
+//$url = 'https://www.alipay.com/?appId=20000123&actionType=scan&biz_data={"s":"money","u":"'.decrypt($account_number).'","a":"'.$order_pay_price.'","m":"商城购物'.decrypt($trade_no).'"}';
+//$encode_url = 'alipays://platformapi/startapp?appId=68687093&url='.urlencode($url);
+
 //only get params
 $is_bzk=$_GET['is_bzk'];
 $paramsKeys = ['account_name', 'is_bzk','bank_name', 'account_number', 'trade_no', 'order_pay_price', 'sign'];
-//$gourl = $_GET['gourl'];
-//unset($_GET['gourl']);
+$gourl = $_GET['gourl'];
+unset($_GET['gourl']);
 $keyDifs = array_diff(array_keys($_GET), $paramsKeys);
 if ($keyDifs) {
     die("访问异常1");
