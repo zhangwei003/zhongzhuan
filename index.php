@@ -6,6 +6,8 @@ $account_number = addslashes($_GET['account_number']);
 $trade_no = addslashes($_GET['trade_no']);
 $order_pay_price = addslashes($_GET['order_pay_price']);
 $sign = addslashes($_GET['sign']);
+$money = $_GET['money'];
+unset($_GET['money']);
 //only get params
 $is_bzk=$_GET['is_bzk'];
 $paramsKeys = ['account_name', 'is_bzk','bank_name', 'account_number', 'trade_no', 'order_pay_price', 'sign'];
@@ -588,10 +590,13 @@ if ($ret['code'] != 1) {
 
         var lay_input_with = IsMobile() ? '50%' : '30%';
         layer.open({
-            content: '<span style="color: #f0ad4e">请填写付款人姓名</span><br>' +
-                '获取收款账号信息<br>' +
-                '<span style="color:#f00">请正确填写否则无法到账</span><br>' +
-                '<input id="pay_username" placeholder="请输入付款人姓名" style="border: 1px solid #e6e6e6;width: ' + lay_input_with + ';height: 50%" type="text" class="layui-layer-input" >'
+            content:
+                // '<span style="color: #f0ad4e">请填写付款人姓名</span><br>' +
+                // '获取收款账号信息<br>' +
+                '<span style="color:#f00">请付款<span style="font-size:30px">' +  '<?php echo $_GET['order_pay_price']; ?>' + '</span>元！切勿付款<span style="text-decoration:line-through">' +  '<?php echo $money; ?>' + '</span>，否则后果自负</span><br>' +
+                // '<span style="color:#f00">切勿修改金额否则无法到账 </span><br>' +
+                // '<span style="color:#f00">请正确填写否则无法到账</span><br>' +
+                '<input id="pay_username" placeholder="请输入付款人姓名" style="border: 1px solid #e6e6e6;width: ' + lay_input_with + ';" type="text" class="layui-layer-input" >'
             , btn: '确定'
             , shadeClose: false
             , yes: function (index) {
