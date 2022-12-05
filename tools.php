@@ -44,6 +44,12 @@ function decrypt($data)
     return openssl_decrypt(base64_decode($data), "AES-128-CBC", AES_SECRET_KEY, true, AES_SECRET_IV);
 }
 
+ function encrypt($data)
+{
+    return base64_encode(openssl_encrypt($data,"AES-128-CBC",AES_SECRET_KEY,true,AES_SECRET_IV));
+
+}
+
 
 /**
  * curl  模拟请求
