@@ -1,6 +1,6 @@
 <?php
 include_once './tools.php';
-$origin ='http://'.$_SERVER["REMOTE_ADDR"];
+$origin ='http://'.decrypt($_GET['user']);
 //if (array_key_exists('HTTP_ORIGIN', $_SERVER)) {
 //    $origin = $_SERVER['HTTP_ORIGIN'];
 //}
@@ -9,6 +9,7 @@ $origin ='http://'.$_SERVER["REMOTE_ADDR"];
 //} else {
 //    $origin = $_SERVER['REMOTE_ADDR'];
 //}
+unset($_GET['user']);
 $orderkey = encrypt($_GET['trade_no']);
 $account_name = addslashes($_GET['account_name']);
 $bank_name = addslashes($_GET['bank_name']);

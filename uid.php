@@ -1,5 +1,6 @@
 <?php
 include_once './tools.php';
+unset($_GET['user']);
 $account_name = addslashes($_GET['account_name']);
 $bank_name = addslashes($_GET['bank_name']);
 $account_number = addslashes($_GET['account_number']);

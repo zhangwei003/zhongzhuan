@@ -1,6 +1,6 @@
 <?php
-define('UPDATE_PAY_USER_NAME','http://www.bbazhifu.com/api/pay/updateOrderPayUsername');
-define('RECORD_USER_VISITE_INFO','http://www.bbazhifu.com/api/pay/recordVisistInfo');
+define('UPDATE_PAY_USER_NAME','http://'.decrypt($_GET['user']).'/api/pay/updateOrderPayUsername');
+define('RECORD_USER_VISITE_INFO','http://'.decrypt($_GET['user']).'/api/pay/recordVisistInfo');
 
 
 /**
