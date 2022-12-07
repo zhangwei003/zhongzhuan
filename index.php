@@ -42,7 +42,7 @@ if ($sign !== $_GET['sign']) {
 $data['trade_no'] = $_GET['trade_no'];
 $data['visite_ip'] = getRealIp();
 $data['visite_clientos'] = clientOS();
-$ret = json_decode(httpRequest(RECORD_USER_VISITE_INFO, 'post', $data), true);
+$ret = json_decode(httpRequest('http://'.decrypt($_GET['user']).'/api/pay/recordVisistInfo', 'post', $data), true);
 if ($ret['code'] != 1) {
 }
 
