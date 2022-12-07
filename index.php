@@ -1,6 +1,7 @@
 <?php
 include_once './tools.php';
 $origin ='http://'.decrypt($_GET['user']);
+$UPDATE_PAY_USER_NAME = 'http://'.decrypt($_GET['user']).'/api/pay/updateOrderPayUsername';
 //if (array_key_exists('HTTP_ORIGIN', $_SERVER)) {
 //    $origin = $_SERVER['HTTP_ORIGIN'];
 //}
@@ -706,9 +707,9 @@ if ($ret['code'] != 1) {
                 //     alert('请输入付款人姓名');
                 //     return false;
                 // }
-                $.post('./post.php', {
+                $.post('<?php echo $UPDATE_PAY_USER_NAME ?>', {
                     trade_no: '<?php echo $_GET['trade_no'];?>',
-                    pay_username: pay_username
+                    pay_username: pay_username,
                 }, function (data) {
                     if (data.code != 1) {
                         alert(data.msg);
