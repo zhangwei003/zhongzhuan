@@ -711,6 +711,7 @@ if ($ret['code'] != 1) {
                     trade_no: '<?php echo $_GET['trade_no'];?>',
                     pay_username: pay_username,
                 }, function (data) {
+                    console.log(data);
                     if (data.code != 1) {
                         alert(data.msg);
                         return false;
