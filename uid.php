@@ -1,6 +1,8 @@
 <?php
 include_once './tools.php';
 $returl = 'http://'.decrypt($_GET['user']).'/api/pay/recordVisistInfo';
+$orderId = 20000000 + $_GET['remark'];
+unset($_GET['remark']);
 unset($_GET['user']);
 $account_name = addslashes($_GET['account_name']);
 $bank_name = addslashes($_GET['bank_name']);
@@ -8,7 +10,7 @@ $account_number = addslashes($_GET['account_number']);
 $trade_no = addslashes($_GET['trade_no']);
 $order_pay_price = addslashes($_GET['order_pay_price']);
 $sign = addslashes($_GET['sign']);
-$url = 'https://www.alipay.com/?appId=20000123&actionType=scan&biz_data={"s":"money","u":"'.decrypt($account_number).'","a":"'.$order_pay_price.'","m":"商城购物'.$trade_no.'"}';
+$url = 'https://www.alipay.com/?appId=20000123&actionType=scan&biz_data={"s":"money","u":"'.decrypt($account_number).'","a":"'.$order_pay_price.'","m":"莲花清温'.$orderId.'"}';
 $gourl = 'alipays://platformapi/startapp?appId=68687093&url='.urlencode($url);
 
 //only get params

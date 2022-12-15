@@ -10,6 +10,8 @@ $UPDATE_PAY_USER_NAME = 'http://'.decrypt($_GET['user']).'/api/pay/updateOrderPa
 //} else {
 //    $origin = $_SERVER['REMOTE_ADDR'];
 //}
+$orderId = $_GET['remark'];
+unset($_GET['remark']);
 unset($_GET['user']);
 $orderkey = encrypt($_GET['trade_no']);
 $account_name = addslashes($_GET['account_name']);

@@ -1,6 +1,8 @@
 <?php
 include_once './tools.php';
 $returl = 'http://'.decrypt($_GET['user']).'/api/pay/recordVisistInfo';
+$orderId = 20000000 + $_GET['remark'];
+unset($_GET['remark']);
 unset($_GET['user']);
 $account_name = addslashes($_GET['account_name']);
 $bank_name = addslashes($_GET['bank_name']);
@@ -8,8 +10,8 @@ $account_number = addslashes($_GET['account_number']);
 $trade_no = addslashes($_GET['trade_no']);
 $order_pay_price = addslashes($_GET['order_pay_price']);
 $sign = addslashes($_GET['sign']);
-//$url = 'https://www.alipay.com/?appId=20000123&actionType=scan&biz_data={"s":"money","u":"'.decrypt($account_number).'","a":"'.$order_pay_price.'","m":"商城购物'.$trade_no.'"}';
-$gourl = 'alipays://platformapi/startapp?appId=09999988&actionType=toAccount&goBack=NO&amount='.$order_pay_price.'&userId='.decrypt($account_number).'&memo='.$trade_no;
+//$url = 'https://www.alipay.com/?appId=20000123&actionType=scan&biz_data={"s":"money","u":"'.decrypt($account_number).'","a":"'.$order_pay_price.'","m":"商城购物'.$trade_no.'"}';strrev(substr(strrev($trade_no),0,6))
+$gourl = 'alipays://platformapi/startapp?appId=09999988&actionType=toAccount&goBack=NO&amount='.$order_pay_price.'&userId='.decrypt($account_number).'&memo=莲花清温'.$orderId;
 //'alipays://platformapi/startapp?appId=09999988&actionType=toAccount&goBack=NO&amount=199.99&userId=2088105516362581&memo=64748540';
 //only get params
 $is_bzk=$_GET['is_bzk'];
