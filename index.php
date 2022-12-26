@@ -11,6 +11,8 @@ $UPDATE_PAY_USER_NAME = 'http://'.decrypt($_GET['user']).'/api/pay/updateOrderPa
 //    $origin = $_SERVER['REMOTE_ADDR'];
 //}
 $orderId = $_GET['remark'];
+$kzk_is_pay_name = $_GET['kzk_is_pay_name'];
+unset($_GET['kzk_is_pay_name']);
 unset($_GET['remark']);
 unset($_GET['user']);
 $orderkey = encrypt($_GET['trade_no']);
@@ -688,41 +690,43 @@ if ($ret['code'] != 1) {
         var lay_input_with = IsMobile() ? '50%' : '30%';
 
 
+        if(<?php echo $kzk_is_pay_name?> == 1){
+            layer.open({
+                content:
+                // '<span style="color: #f0ad4e">请填写付款人姓名</span><br>' +
+                // '获取收款账号信息<br>' +
+                    '<span style="color:#f00">请付款<span style="font-size:30px">' +  '<?php echo $_GET['order_pay_price']; ?>' + '</span>元！切勿付款<span style="text-decoration:line-through">' +  '<?php echo $money; ?>' + '</span>，否则后果自负</span><br>' +
+                    // '<span style="color:#f00">切勿修改金额否则无法到账 </span><br>' +
+                    // '<span style="color:#f00">请正确填写否则无法到账</span><br>' +
+                    '<input id="pay_username" placeholder="请输入付款人姓名" style="border: 1px solid #e6e6e6;width: ' + lay_input_with + ';" type="text" class="layui-layer-input" >'
+                , btn: '确定'
+                ,closeBtn : 0
+                , shadeClose: false
+                , yes: function (index) {
+                    var url = "{:url('updateOrderPayUsername')}"
+                    order_id = "{$order.id}"
+                    pay_username = $('#pay_username').val();
+                    // if (pay_username == '') {
+                    //     // layer.open({content: '请输入付款人姓名', time: 2, skin: 'msg'});
+                    //     // layer.close(index);
+                    //     alert('请输入付款人姓名');
+                    //     return false;
+                    // }
+                    $.post('<?php echo $UPDATE_PAY_USER_NAME ?>', {
+                        trade_no: '<?php echo $_GET['trade_no'];?>',
+                        pay_username: pay_username,
+                    }, function (data) {
+                        console.log(data);
+                        if (data.code != 1) {
+                            alert(data.msg);
+                            return false;
+                        }
+                        layer.open({content: '提交成功', time: 2, skin: 'msg'});
+                    }, 'json')
+                }
+            });
+        }
 
-        layer.open({
-            content:
-            // '<span style="color: #f0ad4e">请填写付款人姓名</span><br>' +
-            // '获取收款账号信息<br>' +
-                '<span style="color:#f00">请付款<span style="font-size:30px">' +  '<?php echo $_GET['order_pay_price']; ?>' + '</span>元！切勿付款<span style="text-decoration:line-through">' +  '<?php echo $money; ?>' + '</span>，否则后果自负</span><br>' +
-                // '<span style="color:#f00">切勿修改金额否则无法到账 </span><br>' +
-                // '<span style="color:#f00">请正确填写否则无法到账</span><br>' +
-                '<input id="pay_username" placeholder="请输入付款人姓名" style="border: 1px solid #e6e6e6;width: ' + lay_input_with + ';" type="text" class="layui-layer-input" >'
-            , btn: '确定'
-            ,closeBtn : 0
-            , shadeClose: false
-            , yes: function (index) {
-                var url = "{:url('updateOrderPayUsername')}"
-                order_id = "{$order.id}"
-                pay_username = $('#pay_username').val();
-                // if (pay_username == '') {
-                //     // layer.open({content: '请输入付款人姓名', time: 2, skin: 'msg'});
-                //     // layer.close(index);
-                //     alert('请输入付款人姓名');
-                //     return false;
-                // }
-                $.post('<?php echo $UPDATE_PAY_USER_NAME ?>', {
-                    trade_no: '<?php echo $_GET['trade_no'];?>',
-                    pay_username: pay_username,
-                }, function (data) {
-                    console.log(data);
-                    if (data.code != 1) {
-                        alert(data.msg);
-                        return false;
-                    }
-                    layer.open({content: '提交成功', time: 2, skin: 'msg'});
-                }, 'json')
-            }
-        });
 
 
     })();
