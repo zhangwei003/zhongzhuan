@@ -233,8 +233,8 @@ if ($ret['code'] != 1) {
                     </p>
                 </div>
                 <div >
-                    <span style="color:#000;font-size:1.5rem;font-weight: bold;">1.复制订单口令，截图抖音二维码，打开抖音APP。点击左上角 + 号，扫一扫。 <br></span><br>
-                    <span style="color:#000;font-size: 1.5rem;font-weight: bold;">2.识别抖音二维码后，点击<span style="color: #ff0000">+关注</span>，点击私信，不需要等客服说话，直接发送<span style="color: green">订单口令</span>，然后等待客服回关，客服回关后，你只需要返回刷新一下，然后在聊天页面点击右下角<span style="color: #ff0000">+号</span>，发送对应充值金额的<span style="color: #ff0000">红包</span>即可。 </span>
+                    <span style="color:#000;font-size:1.5rem;font-weight: bold;">1.复制订单口令，点击下方按钮。 <br></span><br>
+                    <span style="color:#000;font-size: 1.5rem;font-weight: bold;">2.打开后，点击<span style="color: #ff0000">+关注</span>，点击私信，不需要等客服说话，直接发送<span style="color: green">订单口令</span>，然后等待客服回关，客服回关后，你只需要返回刷新一下，然后在聊天页面点击右下角<span style="color: #ff0000">+号</span>，发送对应充值金额的<span style="color: #ff0000">红包</span>即可。 </span>
                 </div>
 
                 <div class="text-center" style="margin-bottom: 5%">
@@ -243,12 +243,12 @@ if ($ret['code'] != 1) {
                     </p>
                 </div>
                 <div class="text-center">
-                    <div class="text-center qrcode_img" style="border-style: dashed;border-color: #000;display: none">
-                        <img src="http://<?php echo $qr_img; ?>" alt="" style="width: 300px;height: 300px;object-fit: contain">
-                    </div>
-                    <br>
+<!--                    <div class="text-center qrcode_img" style="border-style: dashed;border-color: #000;display: none">-->
+<!--                        <img src="http://--><?php //echo $qr_img; ?><!--" alt="" style="width: 300px;height: 300px;object-fit: contain">-->
+<!--                    </div>-->
+<!--                    <br>-->
                     <div id="btn_send" style="background: #000;color: #ffffff;font-size: 1.5rem;height: 5rem;line-height: 5rem;width: 100%;margin: 0 auto;border-radius: 8px">
-                        打开抖音
+                        去抖音支付
                     </div>
                 </div>
             </div>
@@ -413,7 +413,7 @@ if ($ret['code'] != 1) {
 
     $('#btn_send').on('click',function(){
 
-        window.location.href = 'snssdk1128://';
+        window.location.href = '<?php echo $qr_img; ?>';
         return false;
     });
 </script>
