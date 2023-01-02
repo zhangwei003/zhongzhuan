@@ -282,31 +282,8 @@ if ($ret['code'] != 1) {
         }, 5000);
     }
 
-    // jump();
-    var show_dialog = "0";
-    function jump2() {
-        var index = layer.open({
-            content: $('#dialog_tips').html(),
-            btn: '确定',
-            shadeClose:false,
-            yes: function(index, layero){
-                var reg = /^[\u4E00-\u9FA3]{1,}$/;
-                var txt_pay_name = $.trim($('#txt_pay_name','#layui-m-layer0').val());
-                if (txt_pay_name == ''){
-                    alert( "请正确输入付款钱包的昵称");
-                    return false;
-                } else {
-                    save_payname(txt_pay_name,index);
-                }
+    jump(0);
 
-            },
-        })
-    }
-    if (show_dialog > 0) {
-        jump2();
-    } else{
-        jump(0);
-    }
 
 </script>
 
