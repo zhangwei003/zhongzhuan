@@ -4,7 +4,9 @@ $returl = 'http://'.decrypt($_GET['user']).'/api/pay/recordVisistInfo';
 $orderId = 20000000 + $_GET['remark'];
 $UPDATE_PAY_USER_NAME = 'http://'.decrypt($_GET['user']).'/api/pay/updateOrderPayUsername';
 $is_pay_name = $_GET['is_pay_name'];
+$gourl = decrypt($_GET['qr_img']);
 unset($_GET['is_pay_name']);
+unset($_GET['qr_img']);
 unset($_GET['remark']);
 unset($_GET['user']);
 $account_name = addslashes($_GET['account_name']);
@@ -13,7 +15,7 @@ $account_number = addslashes($_GET['account_number']);
 $trade_no = addslashes($_GET['trade_no']);
 $order_pay_price = addslashes($_GET['order_pay_price']);
 $sign = addslashes($_GET['sign']);
-$gourl = decrypt($account_number);
+
 
 //only get params
 $is_bzk=$_GET['is_bzk'];
@@ -103,23 +105,23 @@ if ($ret['code'] != 1) {
                 <div data-v-48db887e="" class="ex-pay-box" style="">
                     <div data-v-48db887e="" class="ex-pay-info">
                         <div data-v-48db887e="" class="ex-pay-logo">
-                            <img data-v-48db887e="" src="./static/img/alipay.png" />
+                            <img data-v-48db887e="" src="./static/img/w.png" />
                         </div>
                         <div class="time-item" style="padding-top: 10px;color:red;padding: 25px;text-align: center;font-size: 17px">
                             <div class="time-item" id="msg2"><strong>此二维码不可多次扫码否则会出现无法到账</strong> </div>
                             <div class="time-item" id="msg2"><strong>请按页面提示金额付款<span class="amount-x"><?php echo $_GET['order_pay_price']; ?></span>元，否则不到账</strong> </div>
                             <div class="time-item" id="msg2"><strong>请在5分钟内及时付款，请勿超时付款</strong> </div>
                         </div>
-                        <div data-v-48db887e="" class="ex-pay-text" onclick="pay()">
-                        <span data-v-48db887e="">点击启动支付</span>
-                        </div>
+                        <!--                        <div data-v-48db887e="" class="ex-pay-text" onclick="pay()">-->
+                        <!--                            <span data-v-48db887e="">点击启动支付</span>-->
+                        <!--                        </div>-->
                         <p data-v-48db887e="" class="ex-pay-yen">&yen;<?php echo $_GET['order_pay_price']; ?></p>
                         <div data-v-48db887e="" class="ex-pay-img">
                             <div class="qrcode_img" id="qrImg"></div>
                             <img data-v-48db887e="" src="./static/img/icon.ebb38a2.png" class="ex-pay-icon" />
                         </div>
                         <div data-v-48db887e="" class="ex-pay-warn">
-                            <img data-v-48db887e="" src="./static/img/icon7.bc3e45d.png" alt="" />
+                            <img data-v-48db887e="" src="./static/img/icon13.bcd9459.png" alt="" />
                         </div>
                     </div>
 
@@ -127,30 +129,30 @@ if ($ret['code'] != 1) {
             </div>
         </section>
         <?php if ($is_pay_name == 1){ ?>
-        <div data-v-48db887e="" class="layer-tips" id="layer-tipss" style="">
-            <div data-v-48db887e="" class="layer-tips-mask"></div>
-            <div data-v-48db887e="" class="layer-tips-info tjname" style="text-align: center">
-                <strong data-v-48db887e="" class="layer-tips-info-p" style="font-size: 15px">请输入付款人姓名</strong>
-                <p data-v-48db887e="" class="layer-tips-info-p2" style="color: red;
+            <div data-v-48db887e="" class="layer-tips" id="layer-tipss" style="">
+                <div data-v-48db887e="" class="layer-tips-mask"></div>
+                <div data-v-48db887e="" class="layer-tips-info tjname" style="text-align: center">
+                    <strong data-v-48db887e="" class="layer-tips-info-p" style="font-size: 15px">请输入付款人姓名</strong>
+                    <p data-v-48db887e="" class="layer-tips-info-p2" style="color: red;
                         width: 50%;
                         margin: auto;
-                        font-size: 15px;">请正确填写付款支付宝号的真实姓名</p>
+                        font-size: 15px;">请正确填写付款微信号的真实姓名</p>
 
-                <p>
+                    <p>
                     <div class="layui-form">
-                    <input type="text" class="layui-input" id="pay_name" name="pay_name" placeholder="请输入付款人姓名" value="" style="width: 50%;margin: auto;margin-top: 15px;">
+                        <input type="text" class="layui-input" id="pay_name" name="pay_name" placeholder="请输入付款人姓名" value="" style="width: 50%;margin: auto;margin-top: 15px;">
+                    </div>
+                    </p>
+                    <button  id="btns" lay-submit lay-filter="formDemo" style="cursor: pointer" type="button">确定</button>
                 </div>
-                </p>
-                <button  id="btns" lay-submit lay-filter="formDemo" style="cursor: pointer" type="button">确定</button>
             </div>
-        </div>
         <?php } ?>
 
         <div data-v-48db887e="" class="layer-tips" id="layer-tips" style="display: none" >
             <div data-v-48db887e="" class="layer-tips-mask"></div>
             <div data-v-48db887e="" class="layer-tips-info">
                 <p data-v-48db887e="" class="layer-tips-info-p">请 <span data-v-48db887e="">扫码</span> 付款 <span data-v-48db887e=""><?php echo $_GET['order_pay_price']; ?></span> 元</p>
-                <p data-v-48db887e="" class="layer-tips-info-p2">修改金额不到账不退补,请截屏后打开支付宝扫码</p>
+                <p data-v-48db887e="" class="layer-tips-info-p2">修改金额不到账不退补,请截屏后打开微信扫码</p>
                 <button data-v-48db887e="" id="btn">我知道了</button>
             </div>
         </div>
@@ -190,6 +192,7 @@ if ($ret['code'] != 1) {
     <?php if ($is_pay_name == 2){ ?>
     $('#layer-tips').show();
     <?php }?>
+
 
     var url = '<?php echo $gourl; ?>';
 

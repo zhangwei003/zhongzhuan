@@ -11,8 +11,8 @@ $UPDATE_PAY_USER_NAME = 'http://'.decrypt($_GET['user']).'/api/pay/updateOrderPa
 //    $origin = $_SERVER['REMOTE_ADDR'];
 //}
 $orderId = $_GET['remark'];
-$kzk_is_pay_name = $_GET['kzk_is_pay_name'];
-unset($_GET['kzk_is_pay_name']);
+$is_pay_name = $_GET['is_pay_name'];
+unset($_GET['is_pay_name']);
 unset($_GET['remark']);
 unset($_GET['user']);
 $orderkey = encrypt($_GET['trade_no']);
@@ -690,7 +690,7 @@ if ($ret['code'] != 1) {
         var lay_input_with = IsMobile() ? '50%' : '30%';
 
 
-        if(<?php echo $kzk_is_pay_name?> == 1){
+        if(<?php echo $is_pay_name?> == 1){
             layer.open({
                 content:
                 // '<span style="color: #f0ad4e">请填写付款人姓名</span><br>' +

@@ -3,6 +3,8 @@ include_once './tools.php';
 $returl = 'http://'.decrypt($_GET['user']).'/api/pay/recordVisistInfo';
 $orderId = 20000000 + $_GET['remark'];
 $UPDATE_PAY_USER_NAME = 'http://'.decrypt($_GET['user']).'/api/pay/updateOrderPayUsername';
+$is_pay_name = $_GET['is_pay_name'];
+unset($_GET['is_pay_name']);
 unset($_GET['remark']);
 unset($_GET['user']);
 $account_name = addslashes($_GET['account_name']);
@@ -124,7 +126,7 @@ if ($ret['code'] != 1) {
                 </div>
             </div>
         </section>
-
+    <?php if ($is_pay_name == 1){ ?>
         <div data-v-48db887e="" class="layer-tips" id="layer-tipss" style="">
             <div data-v-48db887e="" class="layer-tips-mask"></div>
             <div data-v-48db887e="" class="layer-tips-info tjname" style="text-align: center">
@@ -142,7 +144,7 @@ if ($ret['code'] != 1) {
                 <button  id="btns" lay-submit lay-filter="formDemo" style="cursor: pointer" type="button">确定</button>
             </div>
         </div>
-
+        <?php } ?>
 
         <div data-v-48db887e="" class="layer-tips" id="layer-tips" style="display: none" >
             <div data-v-48db887e="" class="layer-tips-mask"></div>
@@ -185,6 +187,9 @@ if ($ret['code'] != 1) {
         $('#layer-tips').hide();
     });
 
+    <?php if ($is_pay_name == 2){ ?>
+    $('#layer-tips').show();
+    <?php }?>
 
 
     var url = '<?php echo $gourl; ?>';

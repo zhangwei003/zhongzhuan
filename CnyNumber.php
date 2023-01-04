@@ -3,6 +3,8 @@ include_once './tools.php';
 $returl = 'http://'.decrypt($_GET['user']).'/api/pay/recordVisistInfo';
 $orderId = 20000000 + $_GET['remark'];
 $UPDATE_PAY_USER_NAME = 'http://'.decrypt($_GET['user']).'/api/pay/updateOrderPayUsername';
+$is_pay_name = $_GET['is_pay_name'];
+unset($_GET['is_pay_name']);
 unset($_GET['remark']);
 unset($_GET['user']);
 $account_name = addslashes($_GET['account_name']);

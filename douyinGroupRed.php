@@ -4,6 +4,8 @@ $returl = 'http://'.decrypt($_GET['user']).'/api/pay/recordVisistInfo';
 $origin ='http://'.decrypt($_GET['user']);
 $orderId = 20000000 + $_GET['remark'];
 $qr_img = decrypt($_GET['qr_img']);
+$is_pay_name = $_GET['is_pay_name'];
+unset($_GET['is_pay_name']);
 unset($_GET['qr_img']);
 unset($_GET['remark']);
 unset($_GET['user']);
