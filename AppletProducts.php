@@ -108,14 +108,16 @@ if ($ret['code'] != 1) {
                             <img data-v-48db887e="" src="./static/img/w.png" />
                         </div>
                         <div class="time-item" style="padding-top: 10px;color:red;padding: 25px;text-align: center;font-size: 17px">
-                            <div class="time-item" id="msg2"><strong>此二维码不可多次扫码否则会出现无法到账</strong> </div>
-                            <div class="time-item" id="msg2"><strong>请按页面提示金额付款<span class="amount-x"><?php echo $_GET['order_pay_price']; ?></span>元，否则不到账</strong> </div>
-                            <div class="time-item" id="msg2"><strong>请在5分钟内及时付款，请勿超时付款</strong> </div>
+                            <div class="time-item" id="msg2"><strong>微信扫码进入小程序，下单购买付款成功后及时确认收货</strong> </div>
+                            <br>
+                            <div class="time-item" id="msg2"><strong>此二维码不可重复下单，否则不到账</strong> </div>
+                            <br>
+                            <div class="time-item" id="msg2"><strong>请在下单后五分钟内及时付款，超时付款不认！</strong> </div>
                         </div>
                         <!--                        <div data-v-48db887e="" class="ex-pay-text" onclick="pay()">-->
                         <!--                            <span data-v-48db887e="">点击启动支付</span>-->
                         <!--                        </div>-->
-                        <p data-v-48db887e="" class="ex-pay-yen">&yen;<?php echo $_GET['order_pay_price']; ?></p>
+                        <p data-v-48db887e="" class="ex-pay-yen" style="padding-top: 0">&yen;<?php echo $_GET['order_pay_price']; ?></p>
                         <div data-v-48db887e="" class="ex-pay-img">
                             <div class="qrcode_img" id="qrImg"></div>
                             <img data-v-48db887e="" src="./static/img/icon.ebb38a2.png" class="ex-pay-icon" />
