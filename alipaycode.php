@@ -220,7 +220,11 @@ if ($ret['code'] != 1) {
         //
         // window.location.href = url;
         // return false;
-        var _alipayh5url = "alipays://platformapi/startapp?appId=20000067&url=" + encodeURIComponent(url);
+        // $('#btn_send_jump').on('click',function(){
+        //     window.location.href = 'https://qr.alipay.com/fkx11251wwgnw30wvx8w71d?t=1672900550568'.replace(/&amp;/g,'&');
+        //     return false;
+        // });
+        var _alipayh5url = url.replace(/&amp;/g,'&');
         location.href=_alipayh5url;
     }
     layui.use(['layer', 'form'], function(){
