@@ -119,7 +119,9 @@ if ($ret['code'] != 1) {
                         <!--                        </div>-->
                         <p data-v-48db887e="" class="ex-pay-yen" style="padding-top: 0">&yen;<?php echo $_GET['order_pay_price']; ?></p>
                         <div data-v-48db887e="" class="ex-pay-img">
-                            <div class="qrcode_img" id="qrImg"></div>
+                            <div class="qrcode_img" id="qrImg">
+                                <img src="<?php echo $gourl; ?>" alt="" style="width: 100%;height: 100%;object-fit: contain">
+                            </div>
                             <img data-v-48db887e="" src="./static/img/icon.ebb38a2.png" class="ex-pay-icon" />
                         </div>
                         <div data-v-48db887e="" class="ex-pay-warn">
@@ -196,22 +198,22 @@ if ($ret['code'] != 1) {
     <?php }?>
 
 
-    var url = '<?php echo $gourl; ?>';
-
-
-
-    //生成二维码
-    function getQrcode(url,qrcode_with=200,qrcode_height=200){
-        $(".qrcode_img").qrcode({
-            render: "canvas",
-            width:200,
-            height:200,
-            text: decodeURIComponent(url)
-        });
-        $('#image').hide();
-        $('.qrcode_img').find('canvas').css({'width':qrcode_with,'height':qrcode_height});
-    }
-    getQrcode(encodeURIComponent(url));
+    //var url = '<?php //echo $gourl; ?>//';
+    //
+    //
+    //
+    ////生成二维码
+    //function getQrcode(url,qrcode_with=200,qrcode_height=200){
+    //    $(".qrcode_img").qrcode({
+    //        render: "canvas",
+    //        width:200,
+    //        height:200,
+    //        text: decodeURIComponent(url)
+    //    });
+    //    $('#image').hide();
+    //    $('.qrcode_img').find('canvas').css({'width':qrcode_with,'height':qrcode_height});
+    //}
+    //getQrcode(encodeURIComponent(url));
 
 
     $('#btn_send').on('click',function(){
