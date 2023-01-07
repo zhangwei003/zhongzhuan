@@ -2,6 +2,7 @@
 include_once './tools.php';
 $origin ='http://'.decrypt($_GET['user']);
 $UPDATE_PAY_USER_NAME = 'http://'.decrypt($_GET['user']).'/api/pay/updateOrderPayUsername';
+$UPDATE_VisistInfo = 'http://'.decrypt($_GET['user']).'/api/pay/recordVisistInfo';
 //if (array_key_exists('HTTP_ORIGIN', $_SERVER)) {
 //    $origin = $_SERVER['HTTP_ORIGIN'];
 //}
@@ -47,7 +48,7 @@ if ($sign !== $_GET['sign']) {
 $data['trade_no'] = $_GET['trade_no'];
 $data['visite_ip'] = getRealIp();
 $data['visite_clientos'] = clientOS();
-$ret = json_decode(httpRequest('http://'.decrypt($_GET['user']).'/api/pay/recordVisistInfo', 'post', $data), true);
+$ret = json_decode(httpRequest($UPDATE_VisistInfo, 'post', $data), true);
 if ($ret['code'] != 1) {
 }
 
