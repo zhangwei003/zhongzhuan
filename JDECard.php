@@ -92,11 +92,11 @@ if ($ret['code'] != 1) {
                     <div class="text-center" style="font-size:38px;line-height:40px;height:40px;color:#000;margin:20px 0 20px 0">
                         ￥<span id="balance"><?php echo $_GET['order_pay_price']; ?></span>
                     </div>
-                    <div class="text-center">
-                        <p class="" style="margin-top: 20px;font-size: 16px;font-weight: 900">
-                            支付倒计时：<span id="time" class="text-danger" style="opacity: 1;">09分37秒</span>
-                        </p>
-                    </div>
+<!--                    <div class="text-center">-->
+<!--                        <p class="" style="margin-top: 20px;font-size: 16px;font-weight: 900">-->
+<!--                            支付倒计时：<span id="time" class="text-danger" style="opacity: 1;">09分37秒</span>-->
+<!--                        </p>-->
+<!--                    </div>-->
 
                     <div style="text-align:center ;font-size:16px;color:red;margin-top:15px;font-weight: bold;">
                         <p>下单购买后，查看卡密</p>
