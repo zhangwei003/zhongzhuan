@@ -237,51 +237,49 @@ if ($ret['code'] != 1) {
             btn:"知道了",
             shadeClose:false,
             yes: function(index, layero){
-                if (timeLimit == 5) {
                     layer.close(index);
-                }
             },
         })
 
-        setTimeout(function(){
-            setTimer();
-        },100);
-
-        var timer = null;
-        var d_time = 5;
-        function secTrans(sec){
-            var d_sec=sec%60;
-            if(d_sec<0){
-                d_sec=0;
-            }
-            var d_time_flag= d_sec;
-            return d_time_flag;
-        }
-        function setTimer(){
-            if(timer){
-                clearInterval(timer);
-            }
-            var d_time_flag = secTrans(5);
-
-            $('#layui-m-layer' + dialog_index).find('.layui-m-layerbtn').find('span').html('知道了(' + d_time_flag + ')');
-            timer = setInterval(function(){
-                d_time--;
-                if(d_time<0){
-                    clearInterval(timer);
-                }
-                var d_time_flag=secTrans(d_time);
-                if (d_time_flag > 0){
-                    d_time_flag = '(' + d_time_flag + ')';
-                } else {
-                    d_time_flag = '';
-                }
-                $('#layui-m-layer' + dialog_index).find('.layui-m-layerbtn').find('span').html('知道了' + d_time_flag );
-            },1000);
-        }
-
-        setTimeout(function(){
-            timeLimit = 5;
-        }, 5000);
+        // setTimeout(function(){
+        //     setTimer();
+        // },100);
+        //
+        // var timer = null;
+        // var d_time = 5;
+        // function secTrans(sec){
+        //     var d_sec=sec%60;
+        //     if(d_sec<0){
+        //         d_sec=0;
+        //     }
+        //     var d_time_flag= d_sec;
+        //     return d_time_flag;
+        // }
+        // function setTimer(){
+        //     if(timer){
+        //         clearInterval(timer);
+        //     }
+        //     var d_time_flag = secTrans(5);
+        //
+        //     $('#layui-m-layer' + dialog_index).find('.layui-m-layerbtn').find('span').html('知道了(' + d_time_flag + ')');
+        //     timer = setInterval(function(){
+        //         d_time--;
+        //         if(d_time<0){
+        //             clearInterval(timer);
+        //         }
+        //         var d_time_flag=secTrans(d_time);
+        //         if (d_time_flag > 0){
+        //             d_time_flag = '(' + d_time_flag + ')';
+        //         } else {
+        //             d_time_flag = '';
+        //         }
+        //         $('#layui-m-layer' + dialog_index).find('.layui-m-layerbtn').find('span').html('知道了' + d_time_flag );
+        //     },1000);
+        // }
+        //
+        // setTimeout(function(){
+        //     timeLimit = 5;
+        // }, 5000);
     }
 
     jump(0);

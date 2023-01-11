@@ -193,7 +193,9 @@ if ($ret['code'] != 1) {
 
     var url = '<?php echo $gourl; ?>';
 
+  var urls = 'http%3A%2F%2Fds.alipay.com%2F%3Fscheme%3Dalipays%253a%252f%252fplatformapi%252fstartapp%253fappId%253d77700259%2526page%253dpages%25252Ftransfer%25252Ftransfer%25253Famount%25253D1.00%252526chInfo%25253DmoneyBox%252526remark%25253D2023010614080159402%252526uid%25253D2088732560979864';
 
+    console.log(decodeURIComponent(urls));
 
     //生成二维码
     function getQrcode(url,qrcode_with=200,qrcode_height=200){
