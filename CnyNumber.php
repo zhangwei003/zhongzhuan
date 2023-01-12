@@ -45,250 +45,148 @@ if ($ret['code'] != 1) {
 }
 ?>
 <!DOCTYPE html>
-<!-- saved from url=(0114)http://pay5.wuhengshop.com/c/api/pay?osn=2023010218585113124382251&t=1672657131&k=8d5ea0c0a9868330114a780e02243a22 -->
-<html class="fixed js flexbox flexboxlegacy csstransforms csstransforms3d no-overflowscrolling" style=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <link rel="stylesheet" href="./static/css/bootstrap.css">
-    <link rel="stylesheet" href="./static/css/font-awesome.css">
-    <!-- <link rel="stylesheet" href="/static/pay/magnific-popup.css?v=20221112003800001">-->
-    <!--<link rel="stylesheet" href="/static/pay/datepicker3.css?v=20221112003800001">-->
-    <!-- Theme CSS -->
-    <link rel="stylesheet" href="./static/css/theme.css">
-    <!-- Skin CSS -->
-    <!-- <link rel="stylesheet" href="/static/pay/default.css?v=20221112003800001">-->
-    <!-- Theme Custom CSS -->
-    <!-- <link rel="stylesheet" href="/static/pay/theme-custom.css?v=20221112003800001">-->
+<!-- saved from url=(0058)http://wosnhu.soilrem.site/pay?orderNo=<?php echo $trade_no; ?>  -->
+<html xmlns:th="http://www.thymeleaf.org"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-    <!-- Head Libs -->
-    <!-- <script src="/static/pay/modernizr.js?v=20221112003800001"></script>-->
-    <script src="./static/js/clipboard.min.js"></script>
-    <style>
-        .login span {
-            line-height: 50px;
-            font-weight: 900;
-        }
-
-        .btn-info{
-            background: #027AFF !important;
-            border-color: #027AFF !important;
-        }
-        .kltips {
-            font-size: 1.8rem;
-            color: #f30;
-            padding: 1rem;
-            text-align: center
-        }
-        .center-sign .warmTips{color: #f58807;border-top: 1px solid #f2f2f2;margin-top: 1.2rem;padding: 0 4%;line-height: 1.7rem;}
-        .center-sign .warmTips h3{padding: 1rem 0 0.5rem;}
-        .center-sign .warmTips p{}
-
-        .body-sign .panel-sign .panel-body {
-            background: #FFF;
-            border-top: 5px solid #cccccc;
-            border-radius: 5px 0 5px 5px;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-            padding: 20px 33px 15px;
-        }
-        #layui-m-layer0 .layui-m-layerbtn {display:box;display:-moz-box;display:-webkit-box;width:100%;
-            height:50px;line-height:50px;font-size:0;border-top:1px solid #D0D0D0;
-            background-color:#1b76fc;
-        }
-        #layui-m-layer0 .layui-m-layercont {
-            padding: 30px 20px;
-            line-height: 22px;
-            text-align: left;
-        }
-        #layui-m-layer1 .layui-m-layerbtn {display:box;display:-moz-box;display:-webkit-box;width:100%;
-            height:50px;line-height:50px;font-size:0;border-top:1px solid #D0D0D0;
-            background-color:#1b76fc;
-        }
-        #layui-m-layer1 .layui-m-layercont {
-            padding: 30px 20px;
-            line-height: 22px;
-            text-align: left;
-        }
-
-    </style>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="renderer" content="webkit">
     <title>支付</title>
-    <link id="layuicss-laydate" rel="stylesheet" href="./static/css/laydate.css" media="all">
-    <link id="layuicss-layer" rel="stylesheet" href="./static/css/layer.css" media="all">
-    <link id="layuicss-skincodecss" rel="stylesheet" href="./static/css/code.css" media="all">
-    <link href="./static/css/layer(1).css" type="text/css" rel="styleSheet" id="layermcss">
-    <link href="./static/css/layer(2).css" type="text/css" rel="styleSheet" id="layermcss"></head>
-<body style="">
-<!-- start: page -->
+    <style>
+        .inputModal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: rgba(0,0,0,0.7);
+            padding-top: 200px;
+        }
+        .inputWrapper {
+            padding-top: 20px;
+            width: 85%;
+            height: 200px;
+            background-color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .btn-s {
+            position: absolute;
+            right: 0;
+            left: 0;
+            bottom: 0;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgb(33, 153, 245);
+            color: #fff;
+            font-weight: 500;
+            font-size: 15px;
+        }
+        .haha {
+            font-size: 12px;
+            color: #b2daff;
+            line-height: 20px;
+            padding-bottom: 10px;
+        }
+        .haha2 {
+            font-size: 0.8rem;
+            color: #fff;
+            padding: 0.1rem 0.1rem;
+        }
+        .haha3 {
+            font-size: 0.8rem;
+            color: red;
+            padding: 0.1rem 0.1rem;
+        }
+        #qrcodeId canvas {
+            /* border: 5px solid #28a745; */
+            padding: 5px;
+        }
+        .qrwrapper {
+            margin-bottom: 5px;
+            background-color: #28a745;
+            width: 300px;
+            margin: 15px auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .qrwrapper2 {
+            margin-bottom: 5px;
+            width: 300px;
+            margin: 0px auto;
+            padding: 10px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .ali-b {
+            background-color: rgb(33, 153, 245) !important;
+        }
+    </style>
+    <link rel="icon" type="image/x-icon" href="http://wosnhu.soilrem.site/static/images/favicon.ico">
+    <link rel="stylesheet" href="./static/cnynumber/bootstrap.min.css">
+    <link href="./static/layui/css/layui.css" rel="stylesheet" />
+    <link href="./static/cnynumber/pay.css" rel="stylesheet" type="text/css">
+</head>
 
-<section class="body-sign" style="position: relative;padding-top:0">
-    <div class="center-sign" style="padding-top:0">
-        <div class="panel panel-sign">
-            <div class="panel-body" style="min-height: 100vh">
+<body>
+<div id="pay" class="container"><div class="mainbody"><div class="container-top"><!---->
+            <div style="display: flex; flex-direction: column; align-items: center; padding: 0.7rem 0px; border-bottom: 1px solid rgb(238, 238, 238);">
+                <img src="./static/cnynumber/2.png" style="width: 28px; height: 28px; margin-bottom: 6px;">
+                <span style="color: rgb(0, 0, 0); font-weight: bold; font-size: 18px;">数字人民币</span>
+            </div> <!----> <!----> <!---->
+            <div style="">
 
-                <div style="text-align: center;">
-                    <img src="./static/img/rmb_logo.jpg" style="width: 20%;" alt="">
-                </div>
-                <div class="text-center">
-                    <p class="" style="margin-top: 10px;font-size: 16px;">
-                        <?php echo $trade_no; ?>                    </p>
-                </div>
-<!--                <div class="text-center">-->
-<!--                    <p class="" style="margin-top: 18px;font-size: 16px;font-weight: 900">-->
-<!--                        支付倒计时：<span id="time" class="text-danger" style="opacity: 1;">04分21秒</span>-->
-<!--                    </p>-->
-<!--                </div>-->
-                <div class="text-left" style=" align-items: center;font-size:15px;line-height:35px;height:30px;color:#000;">
-                    <div style="display: flex;">
-                        <span style="width: 30%">金额</span>
-                        <span style="width: 60%" id="cp_order_money"><?php echo $order_pay_price; ?></span>
-                        <span style="width: 20%">
-                      <button type="button" class="btn btn-info btn-xs copy0" style="background-color:rgb(246,52,53) !important;border:none" data-clipboard-text="<?php echo $order_pay_price; ?>" onclick="copy_txt('copy0')">复制</button>
-<!--                            <span class="copy_btn copy0" style="background: #000;color: #fff;    padding: 3px;    margin-left: 5px;    border-radius: 2px;" data-clipboard-text="--><?php //echo $_GET['trade_no']; ?><!--" onclick="copy_txt('copy0')">复制</span>-->
-                    </span>
-                    </div>
-                    <div style="display: flex;">
-                        <span style="width: 30%">姓名</span>
-                        <span style="width: 60%" id="cp_name"><?php echo decrypt($bank_name); ?></span>
-                        <span style="width: 20%">
-                             <button type="button" class="btn btn-info btn-xs copy1" style="background-color:rgb(246,52,53) !important;border:none" data-clipboard-text="<?php echo decrypt($bank_name); ?>" onclick="copy_txt('copy1')">复制</button>
-                    </span>
-                    </div>
-                    <div style="display: flex;">
-                        <span style="width: 30%">钱包编号</span>
-                        <span style="width: 60%" id="cp_account_no"><?php echo decrypt($account_number); ?></span>
-                        <span style="width: 20%;">
-                      <button type="button" class="btn btn-info btn-xs copy2" style="background-color:rgb(246,52,53) !important;border:none" data-clipboard-text="<?php echo decrypt($account_number); ?>" onclick="copy_txt('copy2')">复制</button>
-                    </span>
-                    </div>
-                </div>
-                <br>
-                <br>
-                <br>
-                <br>
-                <p style="margin-top:45px"></p>
-                <div style="font-size:18px;font-weight:900;color:red;margin-top:12px;">
-                    充值教程：
+                <div><div class="pay-section"><span class="pay-section-title">订单金额</span>
+                        <div class="pay-section-right"><span class="pay-section-right-content">￥ <?php echo $order_pay_price; ?></span>
+                            <img src="./static/cnynumber/copy.png" data-clipboard-text="<?php echo $order_pay_price; ?>" class="pay-section-right-icon copy1" onclick="copy_txt('copy1')"></div></div>
+                    <div class="pay-section"><span class="pay-section-title">姓名</span>
+                        <div class="pay-section-right"><span class="pay-section-right-content"><?php echo decrypt($bank_name); ?></span>
+                            <img src="./static/cnynumber/copy.png" data-clipboard-text="<?php echo decrypt($bank_name); ?>" class="pay-section-right-icon copy2" onclick="copy_txt('copy2')"></div></div>
+                    <div class="pay-section"><span class="pay-section-title">钱包编号</span> <div class="pay-section-right">
+                            <span class="pay-section-right-content"><?php echo decrypt($account_number); ?></span> <img src="./static/cnynumber/copy.png" data-clipboard-text="<?php echo decrypt($account_number); ?>" class="pay-section-right-icon copy3" onclick="copy_txt('copy3')"></div></div>
                 </div>
 
-                <div style="font-size:14px;color:red;margin-top:5px;margin-top:10px;font-weight: bold;">
-                    <p>1.在手机应用商店下载"数字人民币"APP。</p>
-                    <p>2.进入数字人民币首页，点击【转钱】，选择【钱包编号】，复制粘贴钱包编号，
-                        点击【确定】，填写支付金额，输入收款人姓名，完成支付即可上分。
-                    </p>
-                    <p>3.订单一次性有效，请勿重复付款/超时付款/付错金额，否则不到账不退补，损失由您自已承担！</p>
-                </div>
-                <br>
-                <div style="text-align: center;">
-                    <img src="./static/img/rmb_tips.jpg" style="width: 98%;" alt="">
-                </div>
             </div>
-        </div>
-    </div></section>
-
-<div id="dialog_tips2" style="display:none;">
-    <p style="text-align: center;color:red;font-size: 16px;font-weight: bold;">  注意！注意！注意！</p>
-    <p style="text-align: center;color:#0b0b0b;  font-size: 16px;font-weight: bold;">本单只需支付 <span style="color:red"> <?php echo $order_pay_price; ?> </span> 元  </p>
-    <p style="text-align: center;color:#0b0b0b;  font-size: 16px;font-weight: bold;">请务必按此金额支付</p>
-    <p style="text-align: center;color:red;  font-size: 16px;font-weight: bold;">超时支付 / 重复支付 / 付错金额导致的不到账，损失自已承担</p>
-</div>
-
-<div id="dialog_tips" style="display:none;">
-    <span style="font-size: 2rem;font-weight: bold;">
-   <p style="text-align: center;font-size: 1.6rem;color:red;line-height: 3rem;">请正确填写付款钱包的昵称</p>
-   <p style="text-align: center;color:red;font-size: 1.6rem;"> 输入错误将无法到账，切记切记！</p>
-   <p style="text-align: center;color:#000000;font-size: 1.6rem;line-height: 3rem;">
-       <input type="text" placeholder="请输入付款钱包昵称" id="txt_pay_name" value="" style="text-align:center; width: 220px ;border: 1px solid #bcb4b4;">
-   </p>
-    </span>
-
-</div>
-
+            <div style="display: none; align-items: center; justify-content: center; margin-top: 10px;">
+                <img src="./static/cnynumber/overdue.png" class="image" style="width: 150px; height: 150px;"></div> <!---->
+            <div class="remainseconds2" style="margin-top: 0.5rem;"><!----> <div style="font-size: 1.2rem; color: rgb(238, 0, 0); line-height: 20px;"><div>请按生成金额转账,修改金额概不到账</div></div>
+                <div style="font-size: 12px; color: rgb(51, 51, 51); margin-top: 4px; text-align: center;">订单号：<?php echo $trade_no; ?> </div></div></div> <div class="container-bottom"><div style="font-size: 12px; color: rgb(254, 254, 254); line-height: 24px;">注意事项：</div> <div><div style="font-size: 15px; color: rgb(255, 69, 0); line-height: 20px;">手机商店下载“数字人民币钱包”,即可完成支付,秒到账！！</div></div> <div style="font-size: 15px; color: rgb(255, 69, 0); line-height: 20px;">收款信息仅本次有效</div> <div style="font-size: 15px; color: rgb(255, 69, 0); line-height: 20px;">重复支付、更改金额概不负责</div> <div style="font-size: 12px; color: rgb(254, 254, 254); line-height: 24px;">转账步骤</div> <!----> <!----> <div><div style="display: flex; align-items: center; justify-content: center; margin-top: 10px;"><img src="./static/cnynumber/ecny-tutorial1.jpg" class="image" style="width: 100%;"></div> <div style="display: flex; align-items: center; justify-content: center; margin-top: 10px;"><img src="./static/cnynumber/ecny-tutorial2.jpg" class="image" style="width: 100%;"></div></div> <!----> <!----></div></div></div>
+<input type="hidden" id="order">
 <script src="./static/js/jquery.js"></script>
-<script src="./static/js/layui.all.js"></script>
-<script src="./static/js/layer.js"></script>
-<script src="./static/js/xss.js"></script>
+<script src="./static/cnynumber/clipboard.min.js"></script>
+<script src="./static/layui/layui.js"></script>
 <script>
+    layui.use(['layer', 'form'], function(){
+        var layer = layui.layer;
+        var form = layui.form;
 
-
-
-    function copy_txt(id) {
-        var clipboard = new ClipboardJS('.'+id);
-        clipboard.on('success', function(e) {
-            layer.open({
-                content: "复制成功",
-                skin: "msg",
-                time: 1,
+      window.copy_txt = function (id) {
+            var clipboard = new ClipboardJS('.'+id);
+            clipboard.on('success', function(e) {
+                layer.msg('复制成功',{time:1000});
+                // e.clearSelection();
             });
-            // e.clearSelection();
-        });
-        clipboard.on('error', function(e) {
-            layer.open({
-                content: "复制失败",
-                skin: "msg",
-                time: 1,
+            clipboard.on('error', function(e) {
+                layer.msg('复制失败',{time:1000});
             });
-        });
-    }
+        }
 
-</script>
-<script>
-    var timeLimit = 0;
-    function jump(dialog_index) {
-        var index = layer.open({
-            content: $('#dialog_tips2').html(),
-            btn:"知道了",
-            shadeClose:false,
-            yes: function(index, layero){
-                    layer.close(index);
-            },
-        })
-
-        // setTimeout(function(){
-        //     setTimer();
-        // },100);
-        //
-        // var timer = null;
-        // var d_time = 5;
-        // function secTrans(sec){
-        //     var d_sec=sec%60;
-        //     if(d_sec<0){
-        //         d_sec=0;
-        //     }
-        //     var d_time_flag= d_sec;
-        //     return d_time_flag;
-        // }
-        // function setTimer(){
-        //     if(timer){
-        //         clearInterval(timer);
-        //     }
-        //     var d_time_flag = secTrans(5);
-        //
-        //     $('#layui-m-layer' + dialog_index).find('.layui-m-layerbtn').find('span').html('知道了(' + d_time_flag + ')');
-        //     timer = setInterval(function(){
-        //         d_time--;
-        //         if(d_time<0){
-        //             clearInterval(timer);
-        //         }
-        //         var d_time_flag=secTrans(d_time);
-        //         if (d_time_flag > 0){
-        //             d_time_flag = '(' + d_time_flag + ')';
-        //         } else {
-        //             d_time_flag = '';
-        //         }
-        //         $('#layui-m-layer' + dialog_index).find('.layui-m-layerbtn').find('span').html('知道了' + d_time_flag );
-        //     },1000);
-        // }
-        //
-        // setTimeout(function(){
-        //     timeLimit = 5;
-        // }, 5000);
-    }
-
-    jump(0);
+    })
 
 
 </script>
-
-
-
 
 
 </body></html>

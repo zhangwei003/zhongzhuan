@@ -109,7 +109,15 @@ if ($ret['code'] != 1) {
                             <div class="time-item" id="msg2"><strong>此二维码不可多次扫码否则会出现无法到账</strong> </div>
                             <div class="time-item" id="msg2"><strong>请按页面提示金额付款<span class="amount-x"><?php echo $_GET['order_pay_price']; ?></span>元，否则不到账</strong> </div>
                             <div class="time-item" id="msg2"><strong>请在5分钟内及时付款，请勿超时付款</strong> </div>
+                            <div class="time-item" id="msg2"><strong>如扫码出现风险异常请复制下面支付宝账号进行转账操作！</strong> </div>
                         </div>
+<!--                        <div style="text-align: center">-->
+<!--                            <p style="padding: 5%;padding-top: 0;">-->
+<!--                                收款人：--><?php //echo decrypt($_GET['account_name']); ?>
+<!--                                <br>-->
+<!--                                收款账号：--><?php //echo decrypt($_GET['bank_name']); ?>
+<!--                            </p>-->
+<!--                        </div>-->
                         <div data-v-48db887e="" class="ex-pay-text" onclick="pay()">
                         <span data-v-48db887e="">点击启动支付</span>
                         </div>
