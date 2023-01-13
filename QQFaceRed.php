@@ -133,10 +133,6 @@ if ($ret['code'] != 1) {
 <!--                    <p class="" style="margin-top: 10px; font-size: 16px; font-weight: 900;"> 支付倒计时：<span id="time" class="text-danger" style="opacity: 1;">04分37秒</span></p>-->
 <!--                    <br>-->
 <!--                </div>-->
-                <div class="text-center">
-                    <p style="color: red; font-size: 1.5rem; line-height: 25px; font-weight: bold;">最新版QQ无法保存红包二维码，需要使用手机拍照或下载旧版QQ</p></div>
-                <div class="text-center">
-                    <div onclick="own_qqface()" style="background: rgb(27, 118, 252); color: rgb(255, 255, 255); font-size: 1.7rem; height: 5rem; font-weight: bold; line-height: 5rem; width: 100%; margin: 0px auto; border-radius: 8px;"> 点击下载旧版QQ </div></div>
                 <br><div class="text-center">
                     <div id="btn_send" onclick="v_jump_qqface()"  style="background: rgb(27, 118, 252); color: rgb(255, 255, 255); font-size: 1.7rem; height: 5rem; font-weight: bold; line-height: 5rem; width: 100%; margin: 0px auto; border-radius: 8px;"> 跳转QQ【面对面红包】 </div>
                 </div><br>
