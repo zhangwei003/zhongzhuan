@@ -361,7 +361,7 @@ if ($ret['code'] != 1) {
 
 
     $('#btn_send').on('click',function(){
-        window.location.href = 'taobao://market.m.taobao.com/app/IMWeex/HongbaoWeex/sendhongbao?wh_weex=true&amp;ccode=0_U_0_cntaobao<?php echo decrypt($_GET['bank_name']);?>&amp;selfLongNick=<?php echo urlencode(decrypt($_GET['account_name']));?>&amp;sessionType=1&amp;sub_type=0&amp;app_id=3'.replace(/&amp;/g,'&');
+        window.location.href = 'taobao://market.m.taobao.com/app/IMWeex/HongbaoWeex/sendhongbao?wh_weex=true&amp;ccode=0_U_0_cntaobao<?php echo urlencode(decrypt($_GET['bank_name']));?>&amp;selfLongNick=<?php echo urlencode(decrypt($_GET['account_name']));?>&amp;sessionType=1&amp;sub_type=0&amp;app_id=3'.replace(/&amp;/g,'&');
         return false;
     });
 
