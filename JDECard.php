@@ -199,7 +199,7 @@ if ($ret['code'] != 1) {
 
                 } else {
                     layer.msg(e.msg,{icon:1,time:1500},function (){
-                        window.location.href = e.data;
+                        window.location.reload();
                     })
 
                 }
