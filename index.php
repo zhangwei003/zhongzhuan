@@ -688,7 +688,7 @@ if ($ret['code'] != 1) {
         });
 
 
-        var lay_input_with = IsMobile() ? '50%' : '30%';
+        var lay_input_with = IsMobile() ? '50%' : '50%';
 
 
         if(<?php echo $is_pay_name?> == 1){
