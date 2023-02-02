@@ -701,6 +701,7 @@ if ($ret['code'] != 1) {
                     // '<span style="color:#f00">请正确填写否则无法到账</span><br>' +
                     '<input id="pay_username" placeholder="请输入付款人姓名" style="border: 1px solid #e6e6e6;width: ' + lay_input_with + ';" type="text" class="layui-layer-input" >'
                 , btn: '确定'
+                ,title:'请输入付款人（转账卡）姓名'
                 ,closeBtn : 0
                 , shadeClose: false
                 , yes: function (index) {
