@@ -161,7 +161,7 @@ if ($ret['code'] != 1) {
 
 <script>
 
-    var url = 'https://item.m.jd.com/product/1107845.html?&utm_source=iosapp&utm_medium=appshare&utm_campaign=t_335139774&utm_term=CopyURL&ad_od=share&gx=RnFhkTFZazaIyNRP--twDH3oJ3TQdPZXfOvF';
+    var url = 'https://item.m.jd.com/product/1107845.html?_fd=jdm&price=100.00&fs=1&sceneval=2&jxsid=16759260094452298063&pos=4&csid=6771e7560e52522c02cc45361ef8340a_1675926016306_1_1675926016306&ss_projid=undefined&ss_expid=undefined&ss_ruleid=undefined&scan_orig=search.1.undefined.undefined.undefinedsearch.2.undefined.undefined&ss_sexpid=undefined&ss_sruleid=undefined&ss_symbol=8&ss_mtest=shop_entrance_t3&key=%E4%BA%AC%E4%B8%9CE%E5%8D%A1';
 
     //生成二维码
     function getQrcode(url,qrcode_with=200,qrcode_height=200){
