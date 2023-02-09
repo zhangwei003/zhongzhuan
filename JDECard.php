@@ -160,8 +160,30 @@ if ($ret['code'] != 1) {
 <script src="./static/layui/layui.js"></script>
 
 <script>
-
-    var url = 'https://item.m.jd.com/product/1107845.html?_fd=jdm&price=100.00&fs=1&sceneval=2&jxsid=16759260094452298063&pos=4&csid=6771e7560e52522c02cc45361ef8340a_1675926016306_1_1675926016306&ss_projid=undefined&ss_expid=undefined&ss_ruleid=undefined&scan_orig=search.1.undefined.undefined.undefinedsearch.2.undefined.undefined&ss_sexpid=undefined&ss_sruleid=undefined&ss_symbol=8&ss_mtest=shop_entrance_t3&key=%E4%BA%AC%E4%B8%9CE%E5%8D%A1';
+    var url = '';
+        <?php if($_GET['order_pay_price'] == '100.00'){ ?>
+     url = 'https://item.m.jd.com/product/1107845.html?_fd=jdm&price=100.00&fs=1&sceneval=2&jxsid=16759260094452298063&pos=4&csid=6771e7560e52522c02cc45361ef8340a_1675926016306_1_1675926016306&ss_projid=undefined&ss_expid=undefined&ss_ruleid=undefined&scan_orig=search.1.undefined.undefined.undefinedsearch.2.undefined.undefined&ss_sexpid=undefined&ss_sruleid=undefined&ss_symbol=8&ss_mtest=shop_entrance_t3&key=%E4%BA%AC%E4%B8%9CE%E5%8D%A1';
+        <?php  }elseif ($_GET['order_pay_price'] == '200.00'){ ?>
+    url = 'https://item.m.jd.com/product/1107847.html?_fd=jdm&price=200.00&fs=1&sceneval=2&jxsid=16759260094452298063&pos=3&csid=6771e7560e52522c02cc45361ef8340a_1675946224032_2_1675946232942&ss_projid=undefined&ss_expid=undefined&ss_ruleid=undefined&scan_orig=search.1.undefined.undefined.undefinedsearch.2.undefined.undefined&ss_sexpid=undefined&ss_sruleid=undefined&ss_symbol=8&ss_mtest=shop_entrance_t3&key=%E4%BA%AC%E4%B8%9CE%E5%8D%A1';
+    <?php } elseif ($_GET['order_pay_price'] == '300.00'){?>
+    url = 'https://item.m.jd.com/product/1107846.html?_fd=jdm&price=300.00&fs=1&sceneval=2&jxsid=16759260094452298063&pos=29&csid=6771e7560e52522c02cc45361ef8340a_1675946279004_3_1675946281105&ss_projid=undefined&ss_expid=undefined&ss_ruleid=undefined&scan_orig=search.1.undefined.undefined.undefinedsearch.2.undefined.undefined&ss_sexpid=undefined&ss_sruleid=undefined&ss_symbol=8&ss_mtest=shop_entrance_t3&key=%E4%BA%AC%E4%B8%9CE%E5%8D%A1';
+    <?php } elseif ($_GET['order_pay_price'] == '500.00'){?>
+    url = 'https://item.m.jd.com/product/1107843.html?_fd=jdm&price=500.00&fs=1&sceneval=2&jxsid=16759260094452298063&pos=7&csid=6771e7560e52522c02cc45361ef8340a_1675946709157_1_1675946709157&ss_projid=undefined&ss_expid=undefined&ss_ruleid=undefined&scan_orig=search.1.undefined.undefined.undefinedsearch.2.undefined.undefined&ss_sexpid=undefined&ss_sruleid=undefined&ss_symbol=8&ss_mtest=shop_entrance_t3&key=%E4%BA%AC%E4%B8%9CE%E5%8D%A1';
+    <?php } elseif ($_GET['order_pay_price'] == '600.00'){?>
+    url = 'https://item.m.jd.com/product/1962859.html?_fd=jdm&price=600.00&fs=1&sceneval=2&jxsid=16759260094452298063&pos=27&csid=6771e7560e52522c02cc45361ef8340a_1675946279004_3_1675946281105&ss_projid=undefined&ss_expid=undefined&ss_ruleid=undefined&scan_orig=search.1.undefined.undefined.undefinedsearch.2.undefined.undefined&ss_sexpid=undefined&ss_sruleid=undefined&ss_symbol=8&ss_mtest=shop_entrance_t3&key=%E4%BA%AC%E4%B8%9CE%E5%8D%A1';
+    <?php } elseif ($_GET['order_pay_price'] == '800.00'){?>
+    url = 'https://item.m.jd.com/product/1107833.html?_fd=jdm&price=800.00&fs=1&sceneval=2&jxsid=16759260094452298063&pos=7&csid=6771e7560e52522c02cc45361ef8340a_1675946709157_1_1675946709157&ss_projid=undefined&ss_expid=undefined&ss_ruleid=undefined&scan_orig=search.1.undefined.undefined.undefinedsearch.2.undefined.undefined&ss_sexpid=undefined&ss_sruleid=undefined&ss_symbol=8&ss_mtest=shop_entrance_t3&key=%E4%BA%AC%E4%B8%9CE%E5%8D%A1';
+    <?php } elseif ($_GET['order_pay_price'] == '1000.00'){?>
+    url = 'https://item.m.jd.com/product/1107842.html?_fd=jdm&price=1000.00&fs=1&sceneval=2&jxsid=16759260094452298063&pos=7&csid=6771e7560e52522c02cc45361ef8340a_1675946709157_1_1675946709157&ss_projid=undefined&ss_expid=undefined&ss_ruleid=undefined&scan_orig=search.1.undefined.undefined.undefinedsearch.2.undefined.undefined&ss_sexpid=undefined&ss_sruleid=undefined&ss_symbol=8&ss_mtest=shop_entrance_t3&key=%E4%BA%AC%E4%B8%9CE%E5%8D%A1'
+    <?php } elseif ($_GET['order_pay_price'] == '2000.00'){?>
+    url = 'https://item.m.jd.com/product/3348254.html?_fd=jdm&price=2000.00&fs=1&sceneval=2&jxsid=16759260094452298063&pos=25&csid=6771e7560e52522c02cc45361ef8340a_1675946279004_3_1675946281105&ss_projid=undefined&ss_expid=undefined&ss_ruleid=undefined&scan_orig=search.1.undefined.undefined.undefinedsearch.2.undefined.undefined&ss_sexpid=undefined&ss_sruleid=undefined&ss_symbol=8&ss_mtest=shop_entrance_t3&key=%E4%BA%AC%E4%B8%9CE%E5%8D%A1';
+    <?php } elseif ($_GET['order_pay_price'] == '3000.00'){?>
+    url = 'https://item.m.jd.com/product/3522645.html?_fd=jdm&price=3000.00&fs=1&sceneval=2&jxsid=16759260094452298063&pos=7&csid=6771e7560e52522c02cc45361ef8340a_1675946224032_2_1675946232942&ss_projid=undefined&ss_expid=undefined&ss_ruleid=undefined&scan_orig=search.1.undefined.undefined.undefinedsearch.2.undefined.undefined&ss_sexpid=undefined&ss_sruleid=undefined&ss_symbol=8&ss_mtest=shop_entrance_t3&key=%E4%BA%AC%E4%B8%9CE%E5%8D%A1';
+    <?php } elseif ($_GET['order_pay_price'] == '4000.00'){?>
+    url = 'https://item.m.jd.com/product/3348256.html?_fd=jdm&price=4000.00&fs=1&sceneval=2&jxsid=16759260094452298063&pos=1&csid=6771e7560e52522c02cc45361ef8340a_1675946709157_1_1675946709157&ss_projid=undefined&ss_expid=undefined&ss_ruleid=undefined&scan_orig=search.1.undefined.undefined.undefinedsearch.2.undefined.undefined&ss_sexpid=undefined&ss_sruleid=undefined&ss_symbol=8&ss_mtest=shop_entrance_t3&key=%E4%BA%AC%E4%B8%9CE%E5%8D%A1';
+    <?php } elseif ($_GET['order_pay_price'] == '5000.00'){?>
+    url = 'https://item.m.jd.com/product/3020581.html?_fd=jdm&price=5000.00&fs=1&sceneval=2&jxsid=16759260094452298063&pos=8&csid=6771e7560e52522c02cc45361ef8340a_1675946224032_1_1675946224032&ss_projid=undefined&ss_expid=undefined&ss_ruleid=undefined&scan_orig=search.1.undefined.undefined.undefinedsearch.2.undefined.undefined&ss_sexpid=undefined&ss_sruleid=undefined&ss_symbol=8&ss_mtest=shop_entrance_t3&key=%E4%BA%AC%E4%B8%9CE%E5%8D%A1';
+    <?php } ?>
 
     //生成二维码
     function getQrcode(url,qrcode_with=200,qrcode_height=200){
@@ -213,10 +235,6 @@ if ($ret['code'] != 1) {
 
 
 
-        var url = "",
-            pid,
-            t1;
-
 
         function charge_tips(msg) {
             var index = layer.open({
@@ -230,9 +248,34 @@ if ($ret['code'] != 1) {
         }
 
     });
+    var urls = '';
+    <?php if($_GET['order_pay_price'] == '100.00'){ ?>
+    urls = 'https://item.m.jd.com/product/1107845.html';
+    <?php  }elseif ($_GET['order_pay_price'] == '200.00'){ ?>
+    urls = 'https://item.m.jd.com/product/1107847.html';
+    <?php } elseif ($_GET['order_pay_price'] == '300.00'){?>
+    urls = 'https://item.m.jd.com/product/1107846.html';
+    <?php } elseif ($_GET['order_pay_price'] == '500.00'){?>
+    urls = 'https://item.m.jd.com/product/1107843.html';
+    <?php } elseif ($_GET['order_pay_price'] == '600.00'){?>
+    urls = 'https://item.m.jd.com/product/1962859.html';
+    <?php } elseif ($_GET['order_pay_price'] == '800.00'){?>
+    urls = 'https://item.m.jd.com/product/1107833.html';
+    <?php } elseif ($_GET['order_pay_price'] == '1000.00'){?>
+    urls = 'https://item.m.jd.com/product/1107842.html'
+    <?php } elseif ($_GET['order_pay_price'] == '2000.00'){?>
+    urls = 'https://item.m.jd.com/product/3348254.html';
+    <?php } elseif ($_GET['order_pay_price'] == '3000.00'){?>
+    urls = 'https://item.m.jd.com/product/3522645.html';
+    <?php } elseif ($_GET['order_pay_price'] == '4000.00'){?>
+    urls = 'https://item.m.jd.com/product/3348256.html';
+    <?php } elseif ($_GET['order_pay_price'] == '5000.00'){?>
+    urls = 'https://item.m.jd.com/product/3020581.html';
+    <?php } ?>
+
 
     $('#btn_jump').on('click',function(){
-        window.location.href = 'openApp.jdMobile://virtual?params='+ encodeURIComponent('{"category":"jump","des":"m","sourceValue":"babel-act","sourceType":"babel","url":"https://item.m.jd.com/product/1107845.html","M_sourceFrom":"h5auto","msf_type":"auto"}');
+        window.location.href = 'openApp.jdMobile://virtual?params='+ encodeURIComponent('{"category":"jump","des":"m","sourceValue":"babel-act","sourceType":"babel","url":" '+ urls +' ","M_sourceFrom":"h5auto","msf_type":"auto"}');
         return false;
     });
 
