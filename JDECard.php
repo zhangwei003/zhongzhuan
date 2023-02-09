@@ -231,10 +231,8 @@ if ($ret['code'] != 1) {
 
     });
 
-
-
     $('#btn_jump').on('click',function(){
-        window.location.href = 'openApp.jdMobile://virtual?params=%7B%22category%22%3A%22jump%22%2C%22des%22%3A%22m%22%2C%22sourceValue%22%3A%22babel-act%22%2C%22sourceType%22%3A%22babel%22%2C%22url%22%3A%22https%3A%2F%2Fitem.m.jd.com%2Fproduct%2F1107845.html%22%2C%22M_sourceFrom%22%3A%22h5auto%22%2C%22msf_type%22%3A%22auto%22%7D';
+        window.location.href = 'openApp.jdMobile://virtual?params='+ encodeURIComponent('{"category":"jump","des":"m","sourceValue":"babel-act","sourceType":"babel","url":"https://item.m.jd.com/product/1107845.html","M_sourceFrom":"h5auto","msf_type":"auto"}');
         return false;
     });
 
