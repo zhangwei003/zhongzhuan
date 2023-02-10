@@ -202,6 +202,10 @@ if ($ret['code'] != 1) {
         <p style="font-weight: bold">②<span style="color: green">订单口令是什么？</span>订单口令相当于充值的<span style="color: red">密钥</span>，我司会根据您提供的订单口令
             为您上分，请在转账时将订单口令粘贴至转账描述内，不要私自泄露您的订单口令，否则导致资金损失，我司概不承担，不退不补</p>
         <br>
+        <p style="font-weight: bold">③<span style="color: red">重要提示！！！</span>请使用仟信app内余额进行付款，不要使用银行卡付款！<span style="color: green">成功率百分百</span>，
+            充值<span style="color: green">秒到账</span>！</p>
+        <br>
+
         <p style="font-weight: bold">支付后5分钟不到帐 请联系平台客服</p>
         <button class="agree" onclick="app.agree()">我已阅读并接受</button>
     </div>
@@ -232,6 +236,7 @@ if ($ret['code'] != 1) {
                     <span style="color:#000;font-size:1.5rem;font-weight: bold;">1.复制仟信号，打开仟信app。 <br></span><br>
                     <span style="color:#000;font-size: 1.5rem;font-weight: bold;">2.打开后，点击右上角<span style="color: #ff0000">+</span>，选择添加好友，粘贴复制的仟信账号，发送添加！<br></span><br>
                     <span style="color:#000;font-size:1.5rem;font-weight: bold;">3.添加完成后打开聊天页面，选择转账，输入对应金额，在转账描述内粘贴上本页面的<span style="color: green">订单口令</span>，转账完成后等待自动到账 <br></span><br>
+                    <span style="color:#000;font-size:1.5rem;font-weight: bold;">4.请使用仟信app内余额进行付款，不要使用银行卡付款！ <br></span><br>
                 </div>
 
             </div>

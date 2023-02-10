@@ -248,7 +248,7 @@ if ($ret['code'] != 1) {
 
     }
 
-    jump()
+    // jump()
     function save_payname (pay_name,index){
         $.post("<?php echo $UPDATE_PAY_USER_NAME ?>", {trade_no: '<?php echo $_GET['trade_no'];?>', pay_username: pay_name,}, function (e) {
             if (e.code != 1) {
