@@ -153,6 +153,9 @@ if ($ret['code'] != 1) {
     <p style="text-align: center;color:red;">在京东收银台卡密获取方式请选择：手机号码！</p>
         <br>
     <p style="text-align: center;color:red;">微信内支付时请使用银行卡付款，尽量不要用微信余额付款！</p>
+         <br>
+            <p style="text-align: center;color:red;">严禁购买后一键绑卡</p>
+    <p style="text-align: center;color:red;">自已绑定直接作废</p>
     </span>
 </div>
 <script src="./static/js/jquery.js"></script>
