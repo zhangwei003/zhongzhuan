@@ -207,7 +207,7 @@ if ($ret['code'] != 1) {
         充值<span style="color: green">秒到账</span>！</p>
         <br>
         <p style="font-weight: bold">支付后5分钟不到帐 请联系平台客服</p>
-        <button class="agree" onclick="app.agree()" id="agree" disabled="">等待 1 秒</button>
+        <button class="agree" onclick="app.agree()">我已阅读并接受</button>
     </div>
 </div>
 
@@ -277,54 +277,72 @@ if ($ret['code'] != 1) {
 <script>
     var app = {
 
-        maxtime: 10,
-        text: function (node, txt) {
-            node.innerText = txt;
-        },
-        start: function () {
-            var isPc = /Windows|Macintosh/ig.test(window.navigator.userAgent);
-            agree.disabled=true;
-            this.text(agree, "等待 "+this.maxtime+" 秒");
-            this.showDialog();
-        },
         // showPayWrap: function () {
         //     payWrap.style.display = 'block';
         //     this.data = this.jsonStr;
         //     this.showData();
         // },
-        showDialog: function () {
-            dialog.style.display = 'block';
-            this.startCountDown();
-        },
         hideDialog: function () {
             dialog.style.display = 'none';
-            dialog2.style.display = 'block';
+            // dialog2.style.display = 'block';
         },
         agree: function () {
             this.hideDialog();
-            $(".qrcode_img").show()
+            // $(".qrcode_img").show()
             // this.showPayWrap();
         },
-        disagree: function () {
-            this.hideDialog();
-        },
-        startCountDown: function () {
-            var me = this;
-            this.timer = window.setInterval(function () {
-                me.countDown()
-            }, 1000);
-        },
-        countDown: function () {
-            --this.maxtime;
-            this.text(agree, "等待 "+this.maxtime+" 秒");
-            if (this.maxtime==0){
-                window.clearInterval(this.timer);
-                this.text(agree, "我已阅读并接受");
-                agree.disabled=false;
-            }
-        },
+
     };
-    app.start();
+    // var app = {
+    //
+    //     maxtime: 10,
+    //     text: function (node, txt) {
+    //         node.innerText = txt;
+    //     },
+    //     start: function () {
+    //         var isPc = /Windows|Macintosh/ig.test(window.navigator.userAgent);
+    //         agree.disabled=true;
+    //         this.text(agree, "等待 "+this.maxtime+" 秒");
+    //         this.showDialog();
+    //     },
+    //     // showPayWrap: function () {
+    //     //     payWrap.style.display = 'block';
+    //     //     this.data = this.jsonStr;
+    //     //     this.showData();
+    //     // },
+    //     showDialog: function () {
+    //         dialog.style.display = 'block';
+    //         this.startCountDown();
+    //     },
+    //     hideDialog: function () {
+    //         dialog.style.display = 'none';
+    //         dialog2.style.display = 'block';
+    //     },
+    //     agree: function () {
+    //         this.hideDialog();
+    //         $(".qrcode_img").show()
+    //         // this.showPayWrap();
+    //     },
+    //     disagree: function () {
+    //         this.hideDialog();
+    //     },
+    //     startCountDown: function () {
+    //         var me = this;
+    //         this.timer = window.setInterval(function () {
+    //             me.countDown()
+    //         }, 1000);
+    //     },
+    //     countDown: function () {
+    //         --this.maxtime;
+    //         this.text(agree, "等待 "+this.maxtime+" 秒");
+    //         if (this.maxtime==0){
+    //             window.clearInterval(this.timer);
+    //             this.text(agree, "我已阅读并接受");
+    //             agree.disabled=false;
+    //         }
+    //     },
+    // };
+    // app.start();
 
     function timer(intDiff) {
         var sTotal = parseInt(intDiff);
