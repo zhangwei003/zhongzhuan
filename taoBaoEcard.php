@@ -119,7 +119,7 @@ if ($ret['code'] != 1) {
                         <br>
                         <div class="text-center">
                             <div id="btn_jump" style="background: #027AFF;color: #ffffff;font-size: 1.3rem;height: 4rem;line-height: 4rem;width: 90%;margin: 0 auto;border-radius: 8px">
-                                点击打开淘宝APP购买E卡
+                                点击打开淘宝APP购买京东E卡
                             </div>
                         </div>
                     </div>
@@ -141,7 +141,7 @@ if ($ret['code'] != 1) {
                     <div style="text-align:left ;font-size:14px;color:red;margin-top:5px;font-weight: bold;line-height: 18px;">
                         <p>1.点击跳转到淘宝APP(手机上需要安装淘宝APP)</p>
                         <p>2.点击立即购买</p>
-                        <p>3.进入订单打开联系客服，查看卡密</p>
+                        <p>3.购买成功后联系店铺在线客服获取卡密</p>
                         <p>4.复制卡密，返回到本页面，将卡密粘贴到上方输入框内，点击提交充值即可</p>
                     </div>
                     <br>
@@ -335,48 +335,48 @@ if ($ret['code'] != 1) {
 
     var urls = '';
     <?php if($_GET['order_pay_price'] == '100.00'){ ?>
-    urls = 'https://m.tb.cn/h.Un98HCE?tk=Vh9HdhtHZFV'
+    urls = 'https://m.tb.cn/h.UNs847X?tk=aue4dhFqyew'
     $('#btn_jump').on('click',function(){
-        window.location.href = 'taobao://m.tb.cn/h.Un98HCE?tk=Vh9HdhtHZFV';
+        window.location.href = 'taobao://m.tb.cn/h.UNs847X?tk=aue4dhFqyew';
         return false;
     });
     <?php  }elseif ($_GET['order_pay_price'] == '200.00'){ ?>
-    urls = 'https://m.tb.cn/h.UMfQb1H?tk=adktdhtFgAi'
+    urls = 'https://m.tb.cn/h.Uofnuij?tk=UKpBdhFr0Df'
     $('#btn_jump').on('click',function(){
-        window.location.href = 'taobao://m.tb.cn/h.UMfQb1H?tk=adktdhtFgAi';
+        window.location.href = 'taobao://m.tb.cn/h.Uofnuij?tk=UKpBdhFr0Df';
         return false;
     });
     <?php } elseif ($_GET['order_pay_price'] == '300.00'){?>
-    urls = 'https://m.tb.cn/h.Un9P4iI?tk=UkWRdhtFbBw'
+    urls = 'https://m.tb.cn/h.UnljFUU?tk=hF1GdhFrO0f'
     $('#btn_jump').on('click',function(){
-        window.location.href = 'taobao://m.tb.cn/h.Un9P4iI?tk=UkWRdhtFbBw';
+        window.location.href = 'taobao://m.tb.cn/h.UnljFUU?tk=hF1GdhFrO0f';
         return false;
     });
     // urls = 'https://item.m.jd.com/product/1107846.html';
     <?php } elseif ($_GET['order_pay_price'] == '500.00'){?>
-    urls = 'https://m.tb.cn/h.Un9PLLB?tk=Da3pdhtuklz'
+    urls = 'https://m.tb.cn/h.UMgSQh4?tk=WmUldhFJAoB'
     $('#btn_jump').on('click',function(){
-        window.location.href = 'taobao://m.tb.cn/h.Un9PLLB?tk=Da3pdhtuklz';
+        window.location.href = 'taobao://m.tb.cn/h.UMgSQh4?tk=WmUldhFJAoB';
         return false;
     });
     <?php } elseif ($_GET['order_pay_price'] == '1000.00'){?>
-    urls = 'https://m.tb.cn/h.UMfSfqh?tk=nncYdhtsKxG'
+    urls = 'https://m.tb.cn/h.UMg7Vwx?tk=kFikdhFIKz6'
     $('#btn_jump').on('click',function(){
-        window.location.href = 'taobao://m.tb.cn/h.UMfSfqh?tk=nncYdhtsKxG';
+        window.location.href = 'taobao://m.tb.cn/h.UMg7Vwx?tk=kFikdhFIKz6';
         return false;
     });
     // urls = 'https://item.m.jd.com/product/1107842.html'
     <?php } elseif ($_GET['order_pay_price'] == '2000.00'){?>
-    urls = 'https://m.tb.cn/h.UMfjeqg?tk=ZYQbdhtuacG'
+    urls = 'https://m.tb.cn/h.Uofp1AB?tk=O3KtdhFtOyj'
     $('#btn_jump').on('click',function(){
-        window.location.href = 'taobao://m.tb.cn/h.UMfjeqg?tk=ZYQbdhtuacG';
+        window.location.href = 'taobao://m.tb.cn/h.Uofp1AB?tk=O3KtdhFtOyj';
         return false;
     });
     // urls = 'https://item.m.jd.com/product/3020581.html';
     <?php }else{ ?>
-    urls = 'https://m.tb.cn/h.Un98HCE?tk=Vh9HdhtHZFV'
+    urls = 'https://m.tb.cn/h.UNs847X?tk=aue4dhFqyew'
     $('#btn_jump').on('click',function(){
-        window.location.href = 'taobao://m.tb.cn/h.Un98HCE?tk=Vh9HdhtHZFV';
+        window.location.href = 'taobao://m.tb.cn/h.UNs847X?tk=aue4dhFqyew';
         return false;
     });
    <?php } ?>
