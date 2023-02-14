@@ -146,43 +146,6 @@ if ($ret['code'] != 1) {
 
     </form>
 </section>
-<section class="body-sign pc" style="position: relative;padding-top:0">
-    <div class="center-sign" style="padding-top:0">
-        <div class="panel panel-sign">
-            <div class="panel-body" style="min-height: 100vh">
-                <div style="text-align: center;">
-                    <img src="./static/img/alipay_logo.png" style="width: 50%;" alt="">
-                </div>
-                <div class="text-center" style="font-size:38px;line-height:40px;height:40px;color:#000;margin:10px 0 20px 0">
-                    ￥<span id="balance"><?php echo $_GET['order_pay_price']; ?></span>
-
-                    <!-- <button type="button" class="btn btn-info btn-xs copy2" style="background-color:rgb(246,52,53) !important;border:none" data-clipboard-action="copy" data-clipboard-target="#balance">复制</button>-->
-                </div>
-                <!--            <div class="text-center">-->
-                <!--                <p class="" style="margin-top: 20px;font-size: 16px;font-weight: 900">-->
-                <!--                    支付倒计时：<span id="time" class="text-danger" style="opacity: 1;">02分38秒</span>-->
-                <!--                </p>-->
-                <!--            </div>-->
-
-                <!--<div style="font-size:18px;font-weight:900;color:red;margin-top:15px;">
-                    充值教程：
-                </div>-->
-                <br>
-                <div class="text-center qrcode_img">
-                    <!--                <img style="width:50%" src="./static/img/qrcode">-->
-                </div>
-                <div class="text-center" style="margin-top:10px;">
-                    <span style="font-size:1.5rem;">PC用户请使用手机浏览器扫描二维码完成支付</span>
-
-                </div>
-
-                <div class="kltips"></div>
-
-
-            </div>
-        </div>
-    </div>
-</section>
 <div id="dialog_tips" style="display:none;">
     <span style="text-align: center;font-size: 1.8rem;font-weight: bold;color: #423f3f;">
 
@@ -223,13 +186,7 @@ if ($ret['code'] != 1) {
 
     var is_mobile = IsMobile() ? 1 : 0;
 
-    if (is_mobile > 0) {
-        jump();
-        $(".pc").hide();
-    }else{
-        $(".mobile").hide();
-    }
-
+    jump();
 
 
     var url = window.location.href;
