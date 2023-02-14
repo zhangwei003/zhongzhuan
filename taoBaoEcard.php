@@ -157,8 +157,7 @@ if ($ret['code'] != 1) {
 
    <p style="text-align: center;color:red;"> ⚠️⚠️⚠️ 注意注意注意⚠️⚠️⚠️</p>
     <br>
-            <p style="text-align: center;color:red;">严禁购买后一键绑卡</p>
-    <p style="text-align: center;color:red;">自已绑定直接作废</p>
+            <p style="text-align: center;color:red;">如指定淘宝店铺京东E卡出现断货情况，可自行淘宝搜索“京东E卡”关键词，销量靠前的店铺自行购买。</p><br>
     </span>
 </div>
 <script src="./static/js/jquery.js"></script>
