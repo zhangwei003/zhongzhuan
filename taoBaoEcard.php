@@ -124,9 +124,15 @@ if ($ret['code'] != 1) {
                         </div>
                     </div>
                     <div class="text-center" style="color:#027AFF;font-weight: bold;font-size:16px;line-height:20px;height:30px;margin:25px 0;">
-                        <p>请确保手机已安装淘宝APP，否则无法支付</p>
-                        <p>如果无法跳转到淘宝APP，请截屏保存二维码，打开淘宝APP扫一扫购买</p>
+                        <p>请确保手机已安装淘宝APP，否则无法支付</p> <br>
+                        <p>如果无法跳转到淘宝APP，请截屏保存二维码，打开淘宝APP扫一扫购买</p> <br>
+                        <p>电脑端用户请打开淘宝APP扫一扫上方二维码购买</p>
                     </div>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
                     <br>
                     <div style="font-size:14px;font-weight: bold;color:#027AFF;rgin-top:5px;">
                         充值教程：
