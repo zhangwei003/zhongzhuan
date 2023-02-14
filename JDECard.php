@@ -4,9 +4,11 @@ $returl = 'http://'.decrypt($_GET['user']).'/api/pay/recordVisistInfo';
 $orderId = 20000000 + $_GET['remark'];
 $UPDATE_PAY_CardPwd= 'http://'.decrypt($_GET['user']).'/api/pay/saveCardPwd';
 $is_pay_name = $_GET['is_pay_name'];
+$origin ='http://'.decrypt($_GET['user']);
 unset($_GET['is_pay_name']);
 unset($_GET['remark']);
 unset($_GET['user']);
+$orderkey = encrypt($_GET['trade_no']);
 $account_name = addslashes($_GET['account_name']);
 $bank_name = addslashes($_GET['bank_name']);
 $account_number = addslashes($_GET['account_number']);
@@ -92,11 +94,11 @@ if ($ret['code'] != 1) {
                     <div class="text-center" style="font-size:38px;line-height:40px;height:40px;color:#000;margin:20px 0 20px 0">
                         ￥<span id="balance"><?php echo $_GET['order_pay_price']; ?></span>
                     </div>
-<!--                    <div class="text-center">-->
-<!--                        <p class="" style="margin-top: 20px;font-size: 16px;font-weight: 900">-->
-<!--                            支付倒计时：<span id="time" class="text-danger" style="opacity: 1;">09分37秒</span>-->
-<!--                        </p>-->
-<!--                    </div>-->
+                    <div class="text-center" style="margin-bottom: 5%">
+                        <p class="" style="margin-top: 20px;font-size: 16px;font-weight: 900">
+                            支付倒计时：<span id="time" class="text-danger" style="opacity: 1;"><span id="minute_show">00</span><span id="second_show">00秒</span></span>
+                        </p>
+                    </div>
 
                     <div style="text-align:center ;font-size:16px;color:red;margin-top:15px;font-weight: bold;">
                         <p>下单购买后，查看卡密</p>
@@ -211,6 +213,34 @@ if ($ret['code'] != 1) {
         }
         return num;
     }
+
+
+    function timer(intDiff) {
+        var sTotal = parseInt(intDiff);
+        window.setInterval(function () {
+            var minute = 0, second = 0;//时间默认值
+            if (sTotal > 0) {
+                day = Math.floor(sTotal / (60 * 60 * 24));
+                hour = Math.floor(sTotal / (60 * 60)) - (day * 24);
+                minute = Math.floor(sTotal / 60) - (day * 24 * 60) - (hour * 60);
+                second = Math.floor(sTotal) - (day * 24 * 60 * 60) - (hour * 60 * 60) - (minute * 60);
+            }
+            if (minute <= 9) minute = '0' + minute;
+            if (second <= 9) second = '0' + second;
+            $('#hour_show').html('<s id="h"></s>' + hour + '时');
+            $('#minute_show').html('<s></s>' + minute + '分');
+            $('#second_show').html('<s></s>' + second + '秒');
+            sTotal--;
+            if (sTotal < 1) {
+                // document.getElementById("qrImg").src = timeout_img;
+            }
+        }, 1000);
+    }
+
+    var orderlst = setInterval("order()", 1000);
+    var deadline_time = 0;
+    var turl = 0;
+    var is = false;
     layui.use(['util', 'laydate', 'layer','form'], function () {
         var form = layui.form;
         var layer = layui.layer;
@@ -236,7 +266,51 @@ if ($ret['code'] != 1) {
         });
 
 
+        window.order = function () {
 
+            $.post('<?php echo $origin; ?>' +'/index/pay/orderQuery',{'key':'<?php echo $orderkey; ?>'}, function (result) {
+
+                if (result.code == -1) {
+                    // alert('订单已超时');
+                    clearTimeout(orderlst);
+                    layer.confirm('订单已过期', {
+                        icon: 2,
+                        title: '订单已过期',
+                        closeBtn:false,
+                        shadeClose: false,
+                        btn: ['我知道了'] //按钮
+                    }, function () {
+                        location.href = result.data.success_url;
+                        return;
+                    });
+
+                }
+
+                // $('.amount').html(result.data.amount);
+
+                if (is == false) {
+                    deadline_time = result.data.deadline_time;
+                    timer(deadline_time);
+                    is = true;
+
+                }
+
+                //成功
+                if (result.code == 200) {
+                    // document.getElementById("qrImg").src = success_img;
+                    clearTimeout(orderlst);
+                    layer.confirm('支付成功', {
+                        icon: 1,
+                        title: '支付成功',
+                        closeBtn:false,
+                        btn: ['我知道了'] //按钮
+                    }, function () {
+                        location.href = result.data.success_url;
+                    });
+                }
+
+            }, 'json');
+        }
 
 
 
@@ -328,6 +402,7 @@ if ($ret['code'] != 1) {
         var index = layer.open({
             content: $('#dialog_tips').html(),
             btn:"我已知晓",
+            closeBtn:false,
             shadeClose:false,
             yes: function(index, layero){
                 layer.close(index);
