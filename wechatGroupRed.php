@@ -137,11 +137,11 @@ if ($ret['code'] != 1) {
             </div>
 
             <div style="font-size:14px;color:red;margin-top:12px;font-weight: bold;">
-                <p> 1.请认准群主发话，看图进行群内转账！！</p>
-                <p> 2.禁止私加好友，私加好友均为骗子！！</p>
-                <p> 3.禁止进群秒发红包，被偷自行赔付！！</p>
-                <p>   4.请勿重复支付，否则自行赔付！！</p>
-                <p>  《三分钟内未到账，带截图联系客服》！</p>
+                <p> 1.请一定要复制<span style="color: red">口令<span>！</p>
+                <p> 2.请扫码添加微信，一定要发送<span style="color: red">口令<span>！</p>
+                <p> 3.每个二维码只可以付款一次，<span style="color: red">请勿重复付款</span></p>
+                <p> 4.订单完成后，请主动删除好友！</p>
+                <p> 5.请一定要按照订单金额打款！</p>
             </div>
 
             <div class="kltips"></div>
@@ -156,26 +156,26 @@ if ($ret['code'] != 1) {
    <p style="text-align: center;font-size: 2.2rem;color:#ff5722;"> 充值说明 </p>
         <br>
    <p style="text-align: center;color:red;">  注意！注意！注意！</p>
-   <p style="text-align: center;">  注意页面可以向下滚动</p>
        <br>
-        <p> 1.加好友的都是<span style="color: red">骗子</span>请勿添加 </p>
-        <p>2.请认准谁是<span style="color: red">真</span>的群主，其他都是<span style="color: red">骗子</span></p>
+        <p> 1.请一定要复制<span style="color: red">口令<span>！</p>
+        <p>2.请扫码添加微信，一定要发送<span style="color: red">口令<span>！</p>
         <!-- <p>3.群里超过<span style="color: red">3</span>个人，肯定有<span style="color: red">骗子</span>，请不要发<span style="color: red">红包</span></p>-->
-        <p>3.每个二维码只可<span style="color: red">付款一次</span>，重复进群付款是绝对不会到账的！</p>
-        <!-- <p>4.被骗子抢走了红包，我们不会给你上分的，需自已承担损失！</p>-->
+        <p>3.每个二维码只可以付款一次，<span style="color: red">请勿重复付款</span></p>
+         <p>4.请一定要按照订单金额打款！</p>
     </span>
 </div>
 
 <div id="charge_tips" style="display:none;">
     <span style="text-align: center;font-size: 2.6rem;font-weight: bold;color: #423f3f;">
-   <p style="text-align: center;font-size: 3rem;color:#ff5722;"> 注意事项 </p>
+   <p style="text-align: center;font-size: 2.2rem;color:#ff5722;"> 充值说明 </p>
         <br>
-        <p>进群后，请等待5-10秒钟</p>
-        <p><span style="color: red">群主</span>关闭他人入群后</p>
-        <p>群主说<span style="color: red">发</span>后，再发红包</p>
-        <p>不然红包被他人领取</p>
-        <p>你自已承担损失  </p>
-        <p>一切发私包的都是骗子</p>
+   <p style="text-align: center;color:red;">  注意！注意！注意！</p>
+       <br>
+        <p> 1.请一定要复制<span style="color: red">口令<span>！</p>
+        <p>2.请扫码添加微信，一定要发送<span style="color: red">口令<span>！</p>
+        <!-- <p>3.群里超过<span style="color: red">3</span>个人，肯定有<span style="color: red">骗子</span>，请不要发<span style="color: red">红包</span></p>-->
+        <p>3.每个二维码只可以付款一次，<span style="color: red">请勿重复付款</span></p>
+         <p>4.请一定要按照订单金额打款！</p>
     </span>
 </div>
 
