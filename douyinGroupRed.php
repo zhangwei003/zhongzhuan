@@ -224,7 +224,7 @@ if ($ret['code'] != 1) {
                     <img src="./static/img/dypay.png" style="width: 40%;" alt="">
                 </div>
                 <div class="text-center" style="font-size:16px;line-height:30px;height:40px;color:#000;margin:20px 0;">
-                    <span id="ht_order_no">订单口令：<?php echo $_GET['trade_no']; ?></span><span class="copy_btn copy0" style="background: #000;color: #fff;    padding: 3px;    margin-left: 5px;    border-radius: 2px;" data-clipboard-text="<?php echo $_GET['trade_no']; ?>" onclick="copy_txt('copy0')">复制</span>
+                    <span id="ht_order_no">订单口令：<?php echo $orderId; ?></span><span class="copy_btn copy0" style="background: #000;color: #fff;    padding: 3px;    margin-left: 5px;    border-radius: 2px;" data-clipboard-text="<?php echo $_GET['trade_no']; ?>" onclick="copy_txt('copy0')">复制</span>
                 </div>
                 <div class="text-center" style="font-size:38px;line-height:40px;height:40px;color:#000;margin:20px 0 20px 0">
                     金额:<span id="balance" style="color: #ff0000"><?php echo $_GET['order_pay_price']; ?></span>元
