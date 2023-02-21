@@ -3,6 +3,7 @@ include_once './tools.php';
 $returl = 'http://'.decrypt($_GET['user']).'/api/pay/recordVisistInfo';
 $orderId = 20000000 + $_GET['remark'];
 $is_pay_name = $_GET['is_pay_name'];
+$UPDATE_PAY_USER_NAME = 'http://'.decrypt($_GET['user']).'/api/pay/updateOrderPayUsername';
 unset($_GET['is_pay_name']);
 unset($_GET['remark']);
 unset($_GET['user']);
@@ -137,14 +138,16 @@ if ($ret['code'] != 1) {
     </div>
 </section>
 <div id="dialog_tips" style="display:none;">
-    <span style="text-align: center;font-size: 1.8rem;font-weight: bold;color: #423f3f;">
-
-   <p style="text-align: center;color:red;"> ⚠️⚠️⚠️ 注意注意注意⚠️⚠️⚠️</p>
-    <br>
-    <p style="text-align: center;color:red;">请勿使用亲情卡付款</p>
-    <p style="text-align: center;color:red;">无法到账，损失自已承担</p>
+    <span style="font-size: 2rem;font-weight: bold;">
+   <p style="text-align: center;font-size: 1.8rem;color:#000000;line-height: 3rem;"> 请输入付款人姓名 </p>
+   <p style="text-align: center;color:red;font-size: 1.8rem;"> 请正确填写付款支付宝号的真实姓名</p>
+   <p style="text-align: center;color:#000000;font-size: 1.6rem;line-height: 3rem;">
+       <input type="text" placeholder="请输入付款人姓名" id="pay_name" name="pay_name" value="" style="text-align:center; border: 1px solid #bcb4b4;">
+   </p>
     </span>
+
 </div>
+
 <script src="./static/js/jquery.js"></script>
 <script src="./static/js/layui.all.js"></script>
 <script src="./static/js/layer.js"></script>
@@ -174,6 +177,56 @@ if ($ret['code'] != 1) {
         window.location.href = url;
         return false;
     });
+
+    function jump() {
+        var is_show_time = false;
+
+        var index = layer.open({
+            content: $('#dialog_tips').html(),
+            btn: '确定',
+            shadeClose:false,
+            yes: function(index, layero){
+                // charge_tips();
+                if (is_show_time){
+                    if (timeLimit == 5)
+                    {
+                        layer.close(index)
+                    }
+                } else {
+                    var reg = /^[\u4E00-\u9FA3]{1,}$/;
+                    var txt_pay_name = $.trim($('#pay_name','#layui-m-layer0').val());
+                    // if (txt_pay_name == '' || !reg.test(txt_pay_name)){
+                    if (txt_pay_name == ''){
+                        alert( "请正确输入支付宝昵称");
+                        return false;
+                    } else {
+                        save_payname(txt_pay_name,index);
+                    }
+                }
+            },
+        })
+
+    }
+
+    function  save_payname(pay_name,index){
+        $.post('<?php echo $UPDATE_PAY_USER_NAME ?>', {trade_no: '<?php echo $_GET['trade_no'];?>', pay_username: pay_name,}, function (e) {
+            if (e.code != 1) {
+                alert(e.msg)
+                return false;
+            } else {
+                // alert( e.msg);
+                layer.close(index)
+                // jump2(1)
+                return true;
+            }
+        }, "json");
+        return false;
+    }
+
+
+    <?php if ($is_pay_name == 1){ ?>
+    jump();
+    <?php } ?>
 </script>
 
 </body>
