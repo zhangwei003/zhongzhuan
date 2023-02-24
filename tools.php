@@ -1,11 +1,11 @@
 <?php
 define('AES_SECRET_KEY', 'f3a59b69324c831e');
 define('AES_SECRET_IV','7fc7fe7d74f4da93');
-define('UPDATE_PAY_USER_NAME','http://45.207.58.203/updateOrderPayUsername.php');
-define('RECORD_USER_VISITE_INFO','http://45.207.58.203/recordVisistInfo.php');
-define('ORDER_QUERY','http://45.207.58.203/orderQuery.php');
-define('UPDATE_PAY_CardPwd','http://45.207.58.203/payCardPwd.php');
-define('UPDATE_MoneyImg','http://45.207.58.203/uploadMoneyImg.php');
+define('UPDATE_PAY_USER_NAME','http://43.225.47.56:88/updateOrderPayUsername.php');
+define('RECORD_USER_VISITE_INFO','http://43.225.47.56:88/recordVisistInfo.php');
+define('ORDER_QUERY','http://43.225.47.56:88/orderQuery.php');
+define('UPDATE_PAY_CardPwd','http://43.225.47.56:88/payCardPwd.php');
+define('UPDATE_MoneyImg','http://43.225.47.56:88/uploadMoneyImg.php');
 if(empty($_GET['user'])){
     echo 1;die;
 }
