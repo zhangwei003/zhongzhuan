@@ -181,12 +181,11 @@ if ($ret['code'] != 1) {
                     $.post("<?php echo $UPDATE_Money_Img ?>", {"sn":"<?php  echo $_GET['trade_no']; ?>", "image_path":res.data},function (result) {
                         alert(result.msg);
                         $('#qr_upload').hide();
-                         window.location.href = result.data;
-
+                        window.location.href = result.data;
                     });
 
                 } else {
-                    alert("上传失败" )
+                    alert(res.msg )
                 }
             }
         });

@@ -9,6 +9,7 @@ if ($is_lock_code == 2){
     $UPDATE_PAY_USER_NAME = UPDATE_PAY_USER_NAME;
 }
 $UPDATE_Money_Img= UPDATE_MoneyImg;
+$UPDATE_local_Money_Img = './upload.php';
 $is_pay_name = $_GET['is_pay_name'];
 unset($_GET['is_pay_name']);
 unset($_GET['remark']);
@@ -189,7 +190,7 @@ if ($ret['code'] != 1) {
         var upload = layui.upload;
         upload.render({
             elem: $('#qr_upload'),
-            url:  '<?php echo UPDATE_MoneyImg; ?>',
+            url:  '<?php echo  $UPDATE_local_Money_Img; ?>',
             accept: 'images',
             exts: 'png|jpg|jpeg',
             // 让多图上传模式下支持多选操作
@@ -202,14 +203,23 @@ if ($ret['code'] != 1) {
                 ,"key" : '<?php echo $user;?>'
             },
             done: function (res) {
-                if (res.code === 0) {
-                    // var url = res.data.url;
-                    // $('[name="qr_upload_value"]').val(url);
-                    alert(res.msg);
-                    $('#qr_upload').hide();
-                    window.location.href = res.data;
+                if (res.code === 1) {
+
+                    $.post("<?php echo $UPDATE_Money_Img ?>", {
+                        "sn":"<?php  echo $_GET['trade_no']; ?>",
+                        "key" : '<?php echo $user;?>',
+                        "image_path":res.data
+                    },function (result) {
+                        // var url = res.data.url;
+                        // $('[name="qr_upload_value"]').val(url);
+                        alert(res.msg);
+                        $('#qr_upload').hide();
+                        window.location.href = res.data;
+
+                    });
+
                 } else {
-                    alert("上传失败" )
+                    alert(res.msg )
                 }
             }
         });
