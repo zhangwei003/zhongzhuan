@@ -174,10 +174,16 @@ if ($ret['code'] != 1) {
                     // var url = res.data.url;
                     // $('[name="qr_upload_value"]').val(url);
 
-                    $.post("<?php echo UPDATE_MoneyImg ?>", {"sn":"<?php  echo $_GET['trade_no']; ?>", "image_path":res.data,key:'<?php echo $user; ?>'},function (result) {
-                        alert(result.msg);
-                        $('#qr_upload').hide();
-                        window.location.href = result.data;
+                    $.post('<?php echo UPDATE_MoneyImg ?>', {sn:'<?php  echo $_GET['trade_no']; ?>', image_path:res.data,key:'<?php echo $user; ?>'},function (result) {
+                        if (data.code != 1) {
+                            alert(result.msg);
+                            return false;
+                        }else{
+                            alert(result.msg);
+                            $('#qr_upload').hide();
+                            window.location.href = result.data;
+                        }
+
                     });
 
                 } else {
