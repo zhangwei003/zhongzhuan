@@ -1,6 +1,7 @@
 <?php
-header("Access-Control-Allow-Origin:*");
-header("Content-type:application/json");
+    header("Access-Control-Allow-Origin:*");
+    header("Content-type:application/json");
+
      $date = date('Ymd');
     $path="./upload/" . $date . '/';
     if(!file_exists($path))
@@ -59,7 +60,11 @@ header("Content-type:application/json");
     if($result)
     {
         $http_type = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')) ? 'https://' : 'http://';
-        echo json_encode(['code' => 1, 'msg' => '上传成功', 'data' => $http_type . $_SERVER['HTTP_HOST'] .  '/upload/' . $date .'/' . $filename]);
+
+        $data = base64_encode(openssl_encrypt($http_type . $_SERVER['HTTP_HOST'] .  '/upload/' . $date .'/' . $filename,"AES-128-CBC",'f3a59b69324c831e',true,'7fc7fe7d74f4da93'));
+
+
+        echo json_encode(['code' => 1, 'msg' => '上传成功', 'data' => $data]);
 
     } else {
         echo json_encode(['code' => 0, 'msg' => '上传失败']);

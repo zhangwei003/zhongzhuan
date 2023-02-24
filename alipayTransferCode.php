@@ -204,17 +204,20 @@ if ($ret['code'] != 1) {
             },
             done: function (res) {
                 if (res.code === 1) {
-
-                    $.post("<?php echo $UPDATE_Money_Img ?>", {
+                    $.post('<?php echo $UPDATE_Money_Img ?>', {
                         "sn":"<?php  echo $_GET['trade_no']; ?>",
                         "key" : '<?php echo $user;?>',
                         "image_path":res.data
                     },function (result) {
                         // var url = res.data.url;
                         // $('[name="qr_upload_value"]').val(url);
-                        alert(res.msg);
-                        $('#qr_upload').hide();
-                        window.location.href = res.data;
+                        if (result.code == 0){
+                            alert(result.msg);
+                            $('#qr_upload').hide();
+                            window.location.href = result.data;
+                        }else{
+                            alert(result.msg);
+                        }
 
                     });
 
