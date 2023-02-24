@@ -1,11 +1,13 @@
 <?php
 include_once './tools.php';
-$returl = 'http://'.decrypt($_GET['user']).'/api/pay/recordVisistInfo';
+$user = $_GET['user'];
 $orderId = 20000000 + $_GET['remark'];
+
 $UPDATE_PAY_USER_NAME = 'http://'.decrypt($_GET['user']).'/api/pay/updateOrderPayUsername';
 $UPDATE_Money_Img= 'http://'.decrypt($_GET['user']).'/api/pay/uploadMoneyImg';
 
 $UPDATE_LOCAL_Money_Img= './upload.php';
+
 $is_pay_name = $_GET['is_pay_name'];
 unset($_GET['is_pay_name']);
 unset($_GET['remark']);
@@ -43,7 +45,8 @@ if ($sign !== $_GET['sign']) {
 $data['trade_no'] = $_GET['trade_no'];
 $data['visite_ip'] = getRealIp();
 $data['visite_clientos'] = clientOS();
-$ret = json_decode(httpRequest($returl, 'post', $data), true);
+$data['key'] = $user;
+$ret = json_decode(httpRequest(RECORD_USER_VISITE_INFO, 'post', $data), true);
 if ($ret['code'] != 1) {
 }
 ?>
@@ -162,7 +165,7 @@ if ($ret['code'] != 1) {
         var upload = layui.upload;
         upload.render({
             elem: $('#qr_upload'),
-            url:  '<?php echo $UPDATE_LOCAL_Money_Img; ?>',
+            url:  '<?php echo  $UPDATE_LOCAL_Money_Img; ?>',
             accept: 'images',
             exts: 'png|jpg|jpeg',
             // 让多图上传模式下支持多选操作
@@ -170,9 +173,6 @@ if ($ret['code'] != 1) {
             number: 1,
             acceptMime:'image/jpg,image/png,image/jpeg',
             size: 3 * 1024,
-            data:{
-                "sn":"<?php  echo $_GET['trade_no']; ?>",
-            },
             done: function (res) {
                 if (res.code === 1) {
                     // var url = res.data.url;

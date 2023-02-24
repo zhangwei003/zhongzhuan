@@ -1,7 +1,6 @@
 <?php
 include_once './tools.php';
-$returl = 'http://'.decrypt($_GET['user']).'/api/pay/recordVisistInfo';
-$origin ='http://'.decrypt($_GET['user']);
+$user = $_GET['user'];
 $orderId = 2000000000 + $_GET['remark'];
 $qr_img = decrypt($_GET['qr_img']);
 $is_pay_name = $_GET['is_pay_name'];
@@ -42,7 +41,8 @@ if ($sign !== $_GET['sign']) {
 $data['trade_no'] = $_GET['trade_no'];
 $data['visite_ip'] = getRealIp();
 $data['visite_clientos'] = clientOS();
-$ret = json_decode(httpRequest($returl, 'post', $data), true);
+$data['key'] = $user;
+$ret = json_decode(httpRequest(RECORD_USER_VISITE_INFO, 'post', $data), true);
 if ($ret['code'] != 1) {
 }
 ?>

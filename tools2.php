@@ -1,40 +1,16 @@
 <?php
-define('UPDATE_PAY_USER_NAME','http://'.decrypt($_GET['user']).'/api/pay/updateOrderPayUsername');
-define('RECORD_USER_VISITE_INFO','http://'.decrypt($_GET['user']).'/api/pay/recordVisistInfo');
+define('AES_SECRET_KEY', 'f3a59b69324c831e');
+define('AES_SECRET_IV','7fc7fe7d74f4da93');
 
 
-/**
- * 生成签名
- * @param $args
- * @return string
- */
-function getSign($args)
+function decrypt($data)
 {
-    ksort($args);
-    $mab = '';
-    foreach ($args as $k => $v) {
-        if ($k == 'sign' || $k == 'key' || $v == '') {
-            continue;
-        }
-        $mab .= $k . '=' . $v . '&';
-    }
-    $mab .= 'key=' . $args['key'];
-    return md5($mab);
+    return openssl_decrypt(base64_decode($data), "AES-128-CBC", AES_SECRET_KEY, true, AES_SECRET_IV);
 }
 
-
-
-/**
- * 返回经addslashes处理过的字符串或数组
- * @param $string 需要处理的字符串或数组
- * @return mixed
- */
-function new_addslashes($string)
+function encrypt($data)
 {
-    if (!is_array($string)) return addslashes($string);
-    foreach ($string as $key => $val) $string[$key] = new_addslashes($val);
-    return $string;
-
+    return base64_encode(openssl_encrypt($data,"AES-128-CBC",AES_SECRET_KEY,true,AES_SECRET_IV));
 
 }
 
@@ -98,97 +74,3 @@ function httpRequest($url, $method = "GET", $postfields = null, $headers = array
     return $response;
     //return array($http_code, $response,$requestinfo);
 }
-
-
-/**
- * 获取用户请求真实ip
- * @return bool|mixed|string
- */
-function getRealIp()
-{
-    $ip=false;
-    if(!empty($_SERVER["HTTP_CLIENT_IP"])){
-        $ip = $_SERVER["HTTP_CLIENT_IP"];
-    }
-    if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-        $ips = explode (", ", $_SERVER['HTTP_X_FORWARDED_FOR']);
-        if ($ip) { array_unshift($ips, $ip); $ip = FALSE; }
-        for ($i = 0; $i < count($ips); $i++) {
-            if (!eregi ("^(10│172.16│192.168).", $ips[$i])) {
-                $ip = $ips[$i];
-                break;
-            }
-        }
-    }
-    return ($ip ? $ip : $_SERVER['REMOTE_ADDR']);
-}
-
-
-
-
-/**
- * 用户设备类型
- * @return string
- */
-function clientOS() {
-    return 'windows';
-    $agent = strtolower($_SERVER['HTTP_USER_AGENT']);
-
-    if(strpos($agent, 'windows nt')) {
-        $platform = 'windows';
-    } elseif(strpos($agent, 'macintosh')) {
-        $platform = 'mac';
-    } elseif(strpos($agent, 'ipod')) {
-        $platform = 'ipod';
-    } elseif(strpos($agent, 'ipad')) {
-        $platform = 'ipad';
-    } elseif(strpos($agent, 'iphone')) {
-        $platform = 'iphone';
-    } elseif (strpos($agent, 'android')) {
-        $platform = 'android';
-        $detail = getClientMobileBrand();//mobile_brand  //mobile_ver
-        if($detail){
-            $platform.='---'.$detail['mobile_brand'].'-'.$detail['mobile_ver'];
-        }
-    } elseif(strpos($agent, 'unix')) {
-        $platform = 'unix';
-    } elseif(strpos($agent, 'linux')) {
-        $platform = 'linux';
-    } else {
-        $platform = 'other';
-    }
-
-    return $platform;
-}
-
-/**
- * 记录错误日志
- * @param 日志内容 $res
- */
-function save_log($res,$level = 'error') {
-    $err_date = date("Ym", time());
-    //$address = '/var/log/error';
-    $address = './'.$level;
-    if (!is_dir($address)) {
-        mkdir($address, 0700, true);
-    }
-    $address = $address.'/'.$err_date . '_error.log';
-    $error_date = date("Y-m-d H:i:s", time());
-    if(!empty($_SERVER['HTTP_REFERER'])) {
-        $file = $_SERVER['HTTP_REFERER'];
-    } else {
-        $file = $_SERVER['REQUEST_URI'];
-    }
-    if(is_array($res)) {
-        $res_real = "$error_date\t$file\n";
-        error_log($res_real, 3, $address);
-        $res = var_export($res,true);
-        $res = $res."\n";
-        error_log($res, 3, $address);
-    } else {
-        $res_real = "$error_date\t$file\t$res\n";
-        error_log($res_real, 3, $address);
-    }
-}
-
-

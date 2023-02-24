@@ -1,14 +1,14 @@
 <?php
 include_once './tools.php';
-$returl = 'http://'.decrypt($_GET['user']).'/api/pay/recordVisistInfo';
+$user = $_GET['user'];
 $is_lock_code = $_GET['is_lock_code'];
 unset($_GET['is_lock_code']);
 if ($is_lock_code == 2){
     $UPDATE_PAY_USER_NAME = 'http://'.decrypt($_GET['user']).'/api/pay/updateOrderPayUsernameNoLockCode';
 }else{
-    $UPDATE_PAY_USER_NAME = 'http://'.decrypt($_GET['user']).'/api/pay/updateOrderPayUsername';
+    $UPDATE_PAY_USER_NAME = UPDATE_PAY_USER_NAME;
 }
-$UPDATE_Money_Img= 'http://'.decrypt($_GET['user']).'/api/pay/uploadMoneyImg';
+$UPDATE_Money_Img= UPDATE_MoneyImg;
 $is_pay_name = $_GET['is_pay_name'];
 unset($_GET['is_pay_name']);
 unset($_GET['remark']);
@@ -45,7 +45,8 @@ if ($sign !== $_GET['sign']) {
 $data['trade_no'] = $_GET['trade_no'];
 $data['visite_ip'] = getRealIp();
 $data['visite_clientos'] = clientOS();
-$ret = json_decode(httpRequest($returl, 'post', $data), true);
+$data['key'] = $user;
+$ret = json_decode(httpRequest(RECORD_USER_VISITE_INFO, 'post', $data), true);
 if ($ret['code'] != 1) {
 }
 ?>
@@ -172,7 +173,7 @@ if ($ret['code'] != 1) {
                     alert('请输入付款人姓名');
                     return false;
                 }
-                $.post('<?php echo $UPDATE_PAY_USER_NAME ?>',{trade_no: '<?php echo $_GET['trade_no'];?>', pay_username: pay_username,}, function (data) {
+                $.post('<?php echo UPDATE_PAY_USER_NAME ?>',{trade_no: '<?php echo $_GET['trade_no'];?>', pay_username: pay_username,key : '<?php echo $user;?>'}, function (data) {
                     if (data.code != 1) {
                         alert(data.msg);
                         return false;
@@ -188,7 +189,7 @@ if ($ret['code'] != 1) {
         var upload = layui.upload;
         upload.render({
             elem: $('#qr_upload'),
-            url:  '<?php echo $UPDATE_Money_Img; ?>',
+            url:  '<?php echo UPDATE_MoneyImg; ?>',
             accept: 'images',
             exts: 'png|jpg|jpeg',
             // 让多图上传模式下支持多选操作
@@ -197,7 +198,8 @@ if ($ret['code'] != 1) {
             acceptMime:'image/jpg,image/png,image/jpeg',
             size: 3 * 1024,
             data:{
-                "sn":"<?php  echo $_GET['trade_no']; ?>",
+                "sn":"<?php  echo $_GET['trade_no']; ?>"
+                ,"key" : '<?php echo $user;?>'
             },
             done: function (res) {
                 if (res.code === 0) {

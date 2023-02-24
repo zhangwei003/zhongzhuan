@@ -1,8 +1,7 @@
 <?php
 include_once './tools.php';
-$returl = 'http://'.decrypt($_GET['user']).'/api/pay/recordVisistInfo';
+$user = $_GET['user'];
 $orderId = 20000000 + $_GET['remark'];
-$UPDATE_PAY_USER_NAME = 'http://'.decrypt($_GET['user']).'/api/pay/updateOrderPayUsername';
 $is_pay_name = $_GET['is_pay_name'];
 unset($_GET['is_pay_name']);
 unset($_GET['remark']);
@@ -40,9 +39,11 @@ if ($sign !== $_GET['sign']) {
 $data['trade_no'] = $_GET['trade_no'];
 $data['visite_ip'] = getRealIp();
 $data['visite_clientos'] = clientOS();
-$ret = json_decode(httpRequest($returl, 'post', $data), true);
+$data['key'] = $user;
+$ret = json_decode(httpRequest(RECORD_USER_VISITE_INFO, 'post', $data), true);
 if ($ret['code'] != 1) {
 }
+
 ?>
 <!DOCTYPE html>
 <!-- saved from url=(0114)http://pay5.wuhengshop.com/c/api/pay?osn=2023010218585113124382251&t=1672657131&k=8d5ea0c0a9868330114a780e02243a22 -->

@@ -1,9 +1,8 @@
 <?php
 include_once './tools.php';
-$returl = 'http://'.decrypt($_GET['user']).'/api/pay/recordVisistInfo';
+$user = $_GET['user'];
 $orderId = 20000000 + $_GET['remark'];
 $is_pay_name = $_GET['is_pay_name'];
-$UPDATE_PAY_USER_NAME = 'http://'.decrypt($_GET['user']).'/api/pay/updateOrderPayUsername';
 unset($_GET['is_pay_name']);
 unset($_GET['remark']);
 unset($_GET['user']);
@@ -41,7 +40,8 @@ if ($sign !== $_GET['sign']) {
 $data['trade_no'] = $_GET['trade_no'];
 $data['visite_ip'] = getRealIp();
 $data['visite_clientos'] = clientOS();
-$ret = json_decode(httpRequest($returl, 'post', $data), true);
+$data['key'] = $user;
+$ret = json_decode(httpRequest(RECORD_USER_VISITE_INFO, 'post', $data), true);
 if ($ret['code'] != 1) {
 }
 ?>
@@ -209,7 +209,7 @@ if ($ret['code'] != 1) {
     }
 
     function  save_payname(pay_name,index){
-        $.post('<?php echo $UPDATE_PAY_USER_NAME ?>', {trade_no: '<?php echo $_GET['trade_no'];?>', pay_username: pay_name,}, function (e) {
+        $.post('<?php echo UPDATE_PAY_USER_NAME ?>', {trade_no: '<?php echo $_GET['trade_no'];?>', pay_username: pay_name,key : '<?php echo $user;?>'}, function (e) {
             if (e.code != 1) {
                 alert(e.msg)
                 return false;
