@@ -6,9 +6,9 @@ if(empty($_POST['key'])){
 }
 $a = decrypt($_POST['key']);
 
-if(strlen($a)>23){
-    echo 4;die();
-}
+//if(strlen($a)>23){
+//    echo 4;die();
+//}
 //$a = str_replace("http://","",$a);
 //$a = str_replace(".","",$a);
 //$a = str_replace("/","",$a);

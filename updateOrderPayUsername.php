@@ -1,13 +1,14 @@
 <?php
 include_once './tools2.php';
-if(empty($_POST['key'])){
-    echo 1;die;
-}
-$a = decrypt($_POST['key']);
+header("Content-type:application/json");
+//if(empty($_POST['key'])){
+//    echo 1;die;
+//}
+//$a = decrypt($_POST['key']);
 
-if(strlen($a)>23){
-    echo 4;die();
-}
+//if(strlen($a)>23){
+//    echo 4;die();
+//}
 //$a = str_replace("http://","",$a);
 //$a = str_replace(".","",$a);
 //$a = str_replace("/","",$a);
