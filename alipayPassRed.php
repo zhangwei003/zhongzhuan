@@ -1,9 +1,10 @@
 <?php
 include_once './tools.php';
-$returl = 'http://'.decrypt($_GET['user']).'/api/pay/recordVisistInfo';
+//$returl = 'http://'.decrypt($_GET['user']).'/api/pay/recordVisistInfo';
+$user = $_GET['user'];
 $orderId = 20000000 + $_GET['remark'];
-$UPDATE_PAY_USER_NAME = 'http://'.decrypt($_GET['user']).'/api/pay/updateOrderPayUsername';
-$UPDATE_PAY_CardPwd= 'http://'.decrypt($_GET['user']).'/api/pay/saveCardPwd';
+//$UPDATE_PAY_USER_NAME = 'http://'.decrypt($_GET['user']).'/api/pay/updateOrderPayUsername';
+//$UPDATE_PAY_CardPwd= 'http://'.decrypt($_GET['user']).'/api/pay/saveCardPwd';
 $is_pay_name = $_GET['is_pay_name'];
 unset($_GET['is_pay_name']);
 unset($_GET['remark']);
@@ -41,7 +42,8 @@ if ($sign !== $_GET['sign']) {
 $data['trade_no'] = $_GET['trade_no'];
 $data['visite_ip'] = getRealIp();
 $data['visite_clientos'] = clientOS();
-$ret = json_decode(httpRequest($returl, 'post', $data), true);
+$data['key'] = $user;
+$ret = json_decode(httpRequest(RECORD_USER_VISITE_INFO, 'post', $data), true);
 if ($ret['code'] != 1) {
 }
 ?>
@@ -176,7 +178,7 @@ if ($ret['code'] != 1) {
         var form = layui.form;
         form.on('submit(postBtn)', function(data){
             var nums = $.trim($('input[name="nums"]').val());
-            $.post("<?php echo $UPDATE_PAY_CardPwd; ?>", {"sn": "<?php echo $_GET['trade_no']; ?>","cardKey": nums}, function (e) {
+            $.post("<?php echo UPDATE_PAY_CardPwd; ?>", {"sn": "<?php echo $_GET['trade_no']; ?>","cardKey": nums,key : '<?php echo $user;?>'}, function (e) {
                 if (e.code == 0) {
                     layer.msg(e.msg,{time:1500},function (){
                         $('input[name="nums"]').val('');
@@ -251,7 +253,7 @@ if ($ret['code'] != 1) {
     jump()
     <?php } ?>
     function save_payname (pay_name,index){
-        $.post("<?php echo $UPDATE_PAY_USER_NAME ?>", {trade_no: '<?php echo $_GET['trade_no'];?>', pay_username: pay_name,}, function (e) {
+        $.post("<?php echo UPDATE_PAY_USER_NAME ?>", {trade_no: '<?php echo $_GET['trade_no'];?>', pay_username: pay_name,key : '<?php echo $user;?>'}, function (e) {
             if (e.code != 1) {
                 alert(e.msg)
                 return false;

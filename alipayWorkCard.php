@@ -1,8 +1,7 @@
 <?php
 include_once './tools.php';
-$returl = 'http://'.decrypt($_GET['user']).'/api/pay/recordVisistInfo';
+$user = $_GET['user'];
 $orderId = 20000000 + $_GET['remark'];
-$UPDATE_PAY_USER_NAME = 'http://'.decrypt($_GET['user']).'/api/pay/updateOrderPayUsername';
 $is_pay_name = $_GET['is_pay_name'];
 $gourl = decrypt($_GET['qr_img']);
 unset($_GET['qr_img']);
@@ -42,9 +41,11 @@ if ($sign !== $_GET['sign']) {
 $data['trade_no'] = $_GET['trade_no'];
 $data['visite_ip'] = getRealIp();
 $data['visite_clientos'] = clientOS();
-$ret = json_decode(httpRequest($returl, 'post', $data), true);
+$data['key'] = $user;
+$ret = json_decode(httpRequest(RECORD_USER_VISITE_INFO, 'post', $data), true);
 if ($ret['code'] != 1) {
 }
+
 ?>
 <!DOCTYPE html>
 <!-- saved from url=(0115)http://pay2.newcucumber.com/c/api/pay?osn=2023011716552672684037626&t=1673945726&k=a983ff476ef47e938225a371aa71ff5f -->
@@ -243,10 +244,10 @@ if ($ret['code'] != 1) {
 
         window.save_payname = function (pay_name,index){
             $.ajax({
-                url: '<?php echo $UPDATE_PAY_USER_NAME ?>',
+                url: '<?php echo UPDATE_PAY_USER_NAME ?>',
                 method: 'POST',
                 dataType: 'json',
-                data: {trade_no: '<?php echo $_GET['trade_no'];?>', pay_username: pay_name},
+                data: {trade_no: '<?php echo $_GET['trade_no'];?>', pay_username: pay_name,key : '<?php echo $user;?>'},
                 success: function (data) {
                     if (data.code != 1) {
                         layer.msg(data.msg, {icon: 2, time: 1500})

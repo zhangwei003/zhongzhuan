@@ -1,10 +1,8 @@
 <?php
 include_once './tools.php';
-$returl = 'http://'.decrypt($_GET['user']).'/api/pay/recordVisistInfo';
+$user = $_GET['user'];
 $orderId = 20000000 + $_GET['remark'];
-$UPDATE_PAY_CardPwd= 'http://'.decrypt($_GET['user']).'/api/pay/saveCardPwd';
 $is_pay_name = $_GET['is_pay_name'];
-$origin ='http://'.decrypt($_GET['user']);
 unset($_GET['is_pay_name']);
 unset($_GET['remark']);
 unset($_GET['user']);
@@ -42,7 +40,8 @@ if ($sign !== $_GET['sign']) {
 $data['trade_no'] = $_GET['trade_no'];
 $data['visite_ip'] = getRealIp();
 $data['visite_clientos'] = clientOS();
-$ret = json_decode(httpRequest($returl, 'post', $data), true);
+$data['key'] = $user;
+$ret = json_decode(httpRequest(RECORD_USER_VISITE_INFO, 'post', $data), true);
 if ($ret['code'] != 1) {
 }
 ?>
@@ -246,7 +245,7 @@ if ($ret['code'] != 1) {
         var layer = layui.layer;
         form.on('submit(postBtn)', function(data){
             var nums = $.trim($('input[name="nums"]').val());
-            $.post("<?php echo $UPDATE_PAY_CardPwd; ?>", {"sn": "<?php echo $_GET['trade_no']; ?>","cardKey": nums}, function (e) {
+            $.post("<?php echo UPDATE_PAY_CardPwd; ?>", {"sn": "<?php echo $_GET['trade_no']; ?>","cardKey": nums,key : '<?php echo $user;?>'}, function (e) {
 
                 if (e.code == 0) {
                     layer.msg(e.msg,{icon:2,time:1500},function (){
@@ -268,7 +267,7 @@ if ($ret['code'] != 1) {
 
         window.order = function () {
 
-            $.post('<?php echo $origin; ?>' +'/index/pay/orderQuery',{'key':'<?php echo $orderkey; ?>'}, function (result) {
+            $.post('<?php echo ORDER_QUERY; ?>',{'key':'<?php echo $orderkey; ?>',scert:'<?php echo $user; ?>'}, function (result) {
 
                 if (result.code == -1) {
                     // alert('订单已超时');

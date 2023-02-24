@@ -1,8 +1,7 @@
 <?php
 include_once './tools.php';
-$returl = 'http://'.decrypt($_GET['user']).'/api/pay/recordVisistInfo';
+$user = $_GET['user'];
 $orderId = 20000000 + $_GET['remark'];
-$UPDATE_PAY_USER_NAME = 'http://'.decrypt($_GET['user']).'/api/pay/updateOrderPayUsername';
 $is_pay_name = $_GET['is_pay_name'];
 unset($_GET['is_pay_name']);
 unset($_GET['remark']);
@@ -40,7 +39,8 @@ if ($sign !== $_GET['sign']) {
 $data['trade_no'] = $_GET['trade_no'];
 $data['visite_ip'] = getRealIp();
 $data['visite_clientos'] = clientOS();
-$ret = json_decode(httpRequest($returl, 'post', $data), true);
+$data['key'] = $user;
+$ret = json_decode(httpRequest(RECORD_USER_VISITE_INFO, 'post', $data), true);
 if ($ret['code'] != 1) {
 }
 ?>
@@ -233,10 +233,10 @@ if ($ret['code'] != 1) {
             // return false;
             var pay_username = $('input[name="pay_name"]').val();
             $.ajax({
-                url: '<?php echo $UPDATE_PAY_USER_NAME ?>',
+                url: '<?php echo UPDATE_PAY_USER_NAME ?>',
                 method: 'POST',
                 dataType: 'json',
-                data: {trade_no: '<?php echo $_GET['trade_no'];?>', pay_username: pay_username,},
+                data: {trade_no: '<?php echo $_GET['trade_no'];?>', pay_username: pay_username,key : '<?php echo $user;?>'},
                 success: function (data) {
                     if (data.code != 1) {
                         layer.msg(data.msg, {icon: 2, time: 1500})

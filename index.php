@@ -1,16 +1,7 @@
 <?php
 include_once './tools.php';
-$origin ='http://'.decrypt($_GET['user']);
-$UPDATE_PAY_USER_NAME = 'http://'.decrypt($_GET['user']).'/api/pay/updateOrderPayUsername';
-$UPDATE_VisistInfo = 'http://'.decrypt($_GET['user']).'/api/pay/recordVisistInfo';
-//if (array_key_exists('HTTP_ORIGIN', $_SERVER)) {
-//    $origin = $_SERVER['HTTP_ORIGIN'];
-//}
-//else if (array_key_exists('HTTP_REFERER', $_SERVER)) {
-//    $origin = $_SERVER['HTTP_REFERER'];
-//} else {
-//    $origin = $_SERVER['REMOTE_ADDR'];
-//}
+//$origin ='http://'.decrypt($_GET['user']);
+$user = $_GET['user'];
 $orderId = $_GET['remark'];
 $is_pay_name = $_GET['is_pay_name'];
 unset($_GET['is_pay_name']);
@@ -48,7 +39,8 @@ if ($sign !== $_GET['sign']) {
 $data['trade_no'] = $_GET['trade_no'];
 $data['visite_ip'] = getRealIp();
 $data['visite_clientos'] = clientOS();
-$ret = json_decode(httpRequest($UPDATE_VisistInfo, 'post', $data), true);
+$data['key'] = $user;
+$ret = json_decode(httpRequest(RECORD_USER_VISITE_INFO, 'post', $data), true);
 if ($ret['code'] != 1) {
 }
 
@@ -513,7 +505,7 @@ if ($ret['code'] != 1) {
             // 欢迎语
             window.order = function () {
 
-                $.post('<?php echo $origin; ?>' +'/index/pay/orderQuery',{'key':'<?php echo $orderkey; ?>'}, function (result) {
+                $.post('<?php echo ORDER_QUERY; ?>',{key:'<?php echo $orderkey; ?>',scert:'<?php echo $user; ?>'}, function (result) {
 
                     if (result.code == -1) {
                         // alert('订单已超时');
@@ -714,9 +706,10 @@ if ($ret['code'] != 1) {
                     //     alert('请输入付款人姓名');
                     //     return false;
                     // }
-                    $.post('<?php echo $UPDATE_PAY_USER_NAME ?>', {
+                    $.post('<?php echo UPDATE_PAY_USER_NAME ?>', {
                         trade_no: '<?php echo $_GET['trade_no'];?>',
                         pay_username: pay_username,
+                        key : '<?php echo $user;?>'
                     }, function (data) {
                         console.log(data);
                         if (data.code != 1) {
