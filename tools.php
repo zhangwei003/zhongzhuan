@@ -3,6 +3,24 @@ define('AES_SECRET_KEY', 'f3a59b69324c831e');
 define('AES_SECRET_IV','7fc7fe7d74f4da93');
 define('UPDATE_PAY_USER_NAME','http://'.decrypt($_GET['user']).'/api/pay/updateOrderPayUsername');
 define('RECORD_USER_VISITE_INFO','http://'.decrypt($_GET['user']).'/api/pay/recordVisistInfo');
+if(empty($_GET['user'])){
+    echo 1;die;
+}
+$a = decrypt($_GET['user']);
+
+if(strlen($a)>23){
+    echo 4;die();
+}
+$a = str_replace("http://","",$a);
+$a = str_replace(".","",$a);
+$a = str_replace("/","",$a);
+if(strlen($a)>13){
+    echo 3;die();
+}
+if(!is_numeric($a))
+{
+    echo 5;die();
+}
 
 /**
  * 生成签名
@@ -44,7 +62,7 @@ function decrypt($data)
     return openssl_decrypt(base64_decode($data), "AES-128-CBC", AES_SECRET_KEY, true, AES_SECRET_IV);
 }
 
- function encrypt($data)
+function encrypt($data)
 {
     return base64_encode(openssl_encrypt($data,"AES-128-CBC",AES_SECRET_KEY,true,AES_SECRET_IV));
 
