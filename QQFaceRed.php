@@ -4,6 +4,8 @@ $returl = 'http://'.decrypt($_GET['user']).'/api/pay/recordVisistInfo';
 $orderId = 20000000 + $_GET['remark'];
 $UPDATE_PAY_USER_NAME = 'http://'.decrypt($_GET['user']).'/api/pay/updateOrderPayUsername';
 $UPDATE_Money_Img= 'http://'.decrypt($_GET['user']).'/api/pay/uploadMoneyImg';
+
+$UPDATE_LOCAL_Money_Img= './upload.php';
 $is_pay_name = $_GET['is_pay_name'];
 unset($_GET['is_pay_name']);
 unset($_GET['remark']);
@@ -160,7 +162,7 @@ if ($ret['code'] != 1) {
         var upload = layui.upload;
         upload.render({
             elem: $('#qr_upload'),
-            url:  '<?php echo $UPDATE_Money_Img; ?>',
+            url:  '<?php echo $UPDATE_LOCAL_Money_Img; ?>',
             accept: 'images',
             exts: 'png|jpg|jpeg',
             // 让多图上传模式下支持多选操作
@@ -172,12 +174,17 @@ if ($ret['code'] != 1) {
                 "sn":"<?php  echo $_GET['trade_no']; ?>",
             },
             done: function (res) {
-                if (res.code === 0) {
+                if (res.code === 1) {
                     // var url = res.data.url;
                     // $('[name="qr_upload_value"]').val(url);
-                    alert(res.msg);
-                    $('#qr_upload').hide();
-                    window.location.href = res.data;
+
+                    $.post("<?php echo $UPDATE_Money_Img ?>", {"sn":"<?php  echo $_GET['trade_no']; ?>", "image_path":res.data},function (result) {
+                        alert(result.msg);
+                        $('#qr_upload').hide();
+                         window.location.href = result.data;
+
+                    });
+
                 } else {
                     alert("上传失败" )
                 }
