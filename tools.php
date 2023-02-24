@@ -17,10 +17,10 @@ $a = str_replace("/","",$a);
 //if(strlen($a)>13){
 //    echo 3;die();
 //}
-if(!is_numeric($a))
-{
-    echo 5;die();
-}
+//if(!is_numeric($a))
+//{
+//    echo 5;die();
+//}
 
 /**
  * 生成签名
