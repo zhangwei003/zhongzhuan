@@ -175,7 +175,7 @@ if ($ret['code'] != 1) {
                     // $('[name="qr_upload_value"]').val(url);
 
                     $.post('<?php echo UPDATE_MoneyImg ?>', {sn:'<?php  echo $_GET['trade_no']; ?>', image_path:res.data,key:'<?php echo $user; ?>'},function (result) {
-                        if (data.code != 1) {
+                        if (result.code != 1) {
                             alert(result.msg);
                             return false;
                         }else{
