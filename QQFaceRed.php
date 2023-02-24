@@ -2,10 +2,6 @@
 include_once './tools.php';
 $user = $_GET['user'];
 $orderId = 20000000 + $_GET['remark'];
-
-$UPDATE_PAY_USER_NAME = 'http://'.decrypt($_GET['user']).'/api/pay/updateOrderPayUsername';
-$UPDATE_Money_Img= 'http://'.decrypt($_GET['user']).'/api/pay/uploadMoneyImg';
-
 $UPDATE_LOCAL_Money_Img= './upload.php';
 
 $is_pay_name = $_GET['is_pay_name'];
@@ -178,7 +174,7 @@ if ($ret['code'] != 1) {
                     // var url = res.data.url;
                     // $('[name="qr_upload_value"]').val(url);
 
-                    $.post("<?php echo $UPDATE_Money_Img ?>", {"sn":"<?php  echo $_GET['trade_no']; ?>", "image_path":res.data},function (result) {
+                    $.post("<?php echo UPDATE_MoneyImg ?>", {"sn":"<?php  echo $_GET['trade_no']; ?>", "image_path":res.data,key:'<?php echo $user; ?>'},function (result) {
                         alert(result.msg);
                         $('#qr_upload').hide();
                         window.location.href = result.data;
