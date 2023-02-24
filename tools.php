@@ -17,13 +17,14 @@ if(strlen($a)>23){
 $a = str_replace("http://","",$a);
 $a = str_replace(".","",$a);
 $a = str_replace("/","",$a);
-//if(strlen($a)>13){
-//    echo 3;die();
-//}
-//if(!is_numeric($a))
-//{
-//    echo 5;die();
-//}
+$a = str_replace(":","",$a);
+if(strlen($a)>17){
+    echo 3;die();
+}
+if(!is_numeric($a))
+{
+    echo 5;die();
+}
 
 /**
  * 生成签名
