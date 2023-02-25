@@ -1,6 +1,6 @@
 <?php
-define('AES_SECRET_KEY', '435c47692fd8e64f');
-define('AES_SECRET_IV','20faf68db3f82a63');
+define('AES_SECRET_KEY', 'f3a59b69324c831e');
+define('AES_SECRET_IV','7fc7fe7d74f4da93');
 define('UPDATE_PAY_USER_NAME','http://43.225.47.56:88/updateOrderPayUsername.php');
 define('RECORD_USER_VISITE_INFO','http://43.225.47.56:88/recordVisistInfo.php');
 define('ORDER_QUERY','http://43.225.47.56:88/orderQuery.php');
