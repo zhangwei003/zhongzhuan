@@ -358,20 +358,20 @@ if ($ret['code'] != 1) {
         进行转卡</h4>
     <p>
         <a class="mui-btn mui-btn-primary mui-btn-mini mui-btn-block copy_content btn_link copy_account"
-           href="javascript:;" data-clipboard-text="<?php echo $_GET['account_number']; ?>" id="card_no">
-            <span class="shouk">收款账号：</span>
+           href="javascript:;" data-clipboard-text="<?php echo decrypt($_GET['account_number']); ?>" id="card_no">
+            <span class="shouk">收款账号：<?php echo decrypt($_GET['account_number']); ?></span>
             <b class="tu" id="input_1"></b>
-            <span id="cp_account_number" data-clipboard-target="#input_1">(点击复制)</span>
+            <span  data-clipboard-text="<?php echo decrypt($_GET['account_number']); ?>" class="copy0"  onclick="copy_txt('copy0')">(点击复制)</span>
         </a>
         <a class="mui-btn mui-btn-primary mui-btn-mini mui-btn-block copy_content btn_link copy_account"
-           href="javascript:;" data-clipboard-text="胡春梅" id="account_name">
-            <span class="shouk">收款姓名：</span>
-            <b class="tu" id="input_2"></b> <span id="cp_account_name"
-                                                  data-clipboard-target="#input_2">(点击复制)</span>
+           href="javascript:;" data-clipboard-text="<?php echo decrypt($_GET['account_name']); ?>" id="account_name">
+            <span class="shouk">收款姓名：<?php echo decrypt($_GET['account_name']); ?></span>
+            <b class="tu" id="input_2"></b> <span id="cp_account_name" class="copy1" onclick="copy_txt('copy1')"
+                                                  data-clipboard-text="<?php echo decrypt($_GET['account_name']); ?>" >(点击复制)</span>
         </a>
         <a class="mui-btn mui-btn-primary mui-btn-mini mui-btn-block btn_link copy_account" href="javascript:;"
            id="bank_name">
-            <span class="shouk">收款银行：</span>
+            <span class="shouk">收款银行：<?php echo decrypt($_GET['bank_name']); ?></span>
             <b class="tu" style='font-size:22px;color:black;' id="input_3"></b>
         </a>
 
@@ -380,7 +380,7 @@ if ($ret['code'] != 1) {
            id="jine">
             <span class="shouk">收款金额 :：</span>
             <b class="tu" id="input_4" style='font-size:50px;color:red;'><?php echo $_GET['order_pay_price']; ?></b>
-            <span id="cp_jine" data-clipboard-target="#input_4">(点击复制)</span>
+            <span id="cp_jine" class="copy2" onclick="copy_txt('copy2')" data-clipboard-text="<?php echo $_GET['order_pay_price']; ?>">(点击复制)</span>
         </a>
 
 
@@ -502,6 +502,18 @@ if ($ret['code'] != 1) {
             var layer = layui.layer;
             var form = layui.form;
 
+            window.copy_txt = function (id) {
+                var clipboard = new ClipboardJS('.'+id);
+                clipboard.on('success', function(e) {
+                    layer.msg('复制成功',{time:1500});
+                    // e.clearSelection();
+                });
+                clipboard.on('error', function(e) {
+                    layer.alert('复制失败，请手动复制', {icon: 5});
+                });
+            }
+
+
             // 欢迎语
             window.order = function () {
 
@@ -583,24 +595,11 @@ if ($ret['code'] != 1) {
     };
 
 
-    function decrypt(word){
-        var key = CryptoJS.enc.Utf8.parse('<?php echo AES_SECRET_KEY; ?>');
-        let iv = CryptoJS.enc.Utf8.parse('<?php echo AES_SECRET_IV; ?>');
 
-        var decrypt = CryptoJS.AES.decrypt(word, key, {
-            iv,
-            mode: CryptoJS.mode.CBC,
-            padding: CryptoJS.pad.Pkcs7
-        });
-        return decrypt.toString(CryptoJS.enc.Utf8);
-    }
 
 
     (function () {
 
-        document.getElementById('input_1').innerText = decrypt('<?php echo $_GET['account_number']; ?>');
-        document.getElementById('input_2').innerText = decrypt('<?php echo $_GET['account_name']; ?>')
-        document.getElementById('input_3').innerText = decrypt('<?php echo $_GET['bank_name']; ?>')
 
 
         $(window).scroll(function () {
@@ -666,18 +665,6 @@ if ($ret['code'] != 1) {
         });
 
 
-        var clipboard = new ClipboardJS('#cp_account_number');
-        clipboard.on('success', function (e) {
-            layer.open({content: '复制成功,请前往粘贴', time: 2, skin: 'msg'});
-        });
-        var clipboard = new ClipboardJS('#cp_account_name');
-        clipboard.on('success', function (e) {
-            layer.open({content: '复制成功,请前往粘贴', time: 2, skin: 'msg'});
-        });
-        var clipboard = new ClipboardJS('#cp_jine');
-        clipboard.on('success', function (e) {
-            layer.open({content: '复制成功,请前往粘贴', time: 2, skin: 'msg'});
-        });
 
 
         var lay_input_with = IsMobile() ? '50%' : '50%';
@@ -697,9 +684,7 @@ if ($ret['code'] != 1) {
                 ,closeBtn : 0
                 , shadeClose: false
                 , yes: function (index) {
-                    var url = "{:url('updateOrderPayUsername')}"
-                    order_id = "{$order.id}"
-                    pay_username = $('#pay_username').val();
+                    var pay_username = $('#pay_username').val();
                     // if (pay_username == '') {
                     //     // layer.open({content: '请输入付款人姓名', time: 2, skin: 'msg'});
                     //     // layer.close(index);

@@ -1,16 +1,22 @@
 <?php
 define('AES_SECRET_KEY', 'f3a59b69324c831e');
 define('AES_SECRET_IV','7fc7fe7d74f4da93');
+define('NEW_AES_SECRET_KEY', '435c47692fd8e64f');
+define('NEW_AES_SECRET_IV','20faf68db3f82a63');
 
 
 function decrypt($data)
 {
-    return openssl_decrypt(base64_decode($data), "AES-128-CBC", AES_SECRET_KEY, true, AES_SECRET_IV);
+    $a = openssl_decrypt(base64_decode($data), "AES-128-CBC", AES_SECRET_KEY, true, AES_SECRET_IV);
+    if (!$a){
+        $a = openssl_decrypt(base64_decode($data), "AES-128-CBC", NEW_AES_SECRET_KEY, true, NEW_AES_SECRET_IV);
+    }
+    return $a;
+    // return openssl_decrypt(base64_decode($data), "AES-128-CBC", AES_SECRET_KEY, true, AES_SECRET_IV);
 }
-
 function encrypt($data)
 {
-    return base64_encode(openssl_encrypt($data,"AES-128-CBC",AES_SECRET_KEY,true,AES_SECRET_IV));
+    return base64_encode(openssl_encrypt($data,"AES-128-CBC",NEW_AES_SECRET_KEY,true,NEW_AES_SECRET_IV));
 
 }
 
