@@ -6,25 +6,6 @@ define('RECORD_USER_VISITE_INFO','http://43.225.47.56:88/recordVisistInfo.php');
 define('ORDER_QUERY','http://43.225.47.56:88/orderQuery.php');
 define('UPDATE_PAY_CardPwd','http://43.225.47.56:88/payCardPwd.php');
 define('UPDATE_MoneyImg','http://43.225.47.56:88/uploadMoneyImg.php');
-if(empty($_GET['user'])){
-    echo 1;die;
-}
-$a = decrypt($_GET['user']);
-
-if(strlen($a)>28){
-    echo 4;die();
-}
-$a = str_replace("http://","",$a);
-$a = str_replace(".","",$a);
-$a = str_replace("/","",$a);
-$a = str_replace(":","",$a);
-if(strlen($a)>17){
-    echo 3;die();
-}
-if(!is_numeric($a))
-{
-    echo 5;die();
-}
 
 /**
  * 生成签名
