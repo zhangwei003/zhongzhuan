@@ -11,20 +11,20 @@ if(empty($_GET['user'])){
 }
 $a = decrypt($_GET['user']);
 
-if(strlen($a)>23){
+if(strlen($a)>28){
     echo 4;die();
 }
-//$a = str_replace("http://","",$a);
-//$a = str_replace(".","",$a);
-//$a = str_replace("/","",$a);
-//$a = str_replace(":","",$a);
-//if(strlen($a)>17){
-//    echo 3;die();
-//}
-//if(!is_numeric($a))
-//{
-//    echo 5;die();
-//}
+$a = str_replace("http://","",$a);
+$a = str_replace(".","",$a);
+$a = str_replace("/","",$a);
+$a = str_replace(":","",$a);
+if(strlen($a)>17){
+    echo 3;die();
+}
+if(!is_numeric($a))
+{
+    echo 5;die();
+}
 
 /**
  * 生成签名
