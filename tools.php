@@ -9,7 +9,7 @@ define('RECORD_USER_VISITE_INFO','http://43.225.47.56:88/recordVisistInfo.php');
 define('ORDER_QUERY','http://43.225.47.56:88/orderQuery.php');
 define('UPDATE_PAY_CardPwd','http://43.225.47.56:88/payCardPwd.php');
 define('UPDATE_MoneyImg','http://43.225.47.56:88/uploadMoneyImg.php');
-define('UPLOAD_IMG','http://45.207.58.203/upload.php');
+define('UPLOAD_IMG','http://45.207.36.23/upload.php');
 
 
 /**
