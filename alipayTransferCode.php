@@ -4,12 +4,12 @@ $user = $_GET['user'];
 $is_lock_code = $_GET['is_lock_code'];
 unset($_GET['is_lock_code']);
 if ($is_lock_code == 2){
-    $UPDATE_PAY_USER_NAME = 'http://'.decrypt($_GET['user']).'/api/pay/updateOrderPayUsernameNoLockCode';
+    $UPDATE_PAY_USER_NAME = UPDATE_PAY_LOCK_USER_NAME;
 }else{
     $UPDATE_PAY_USER_NAME = UPDATE_PAY_USER_NAME;
 }
 $UPDATE_Money_Img= UPDATE_MoneyImg;
-$UPDATE_local_Money_Img = './upload.php';
+$UPDATE_local_Money_Img = UPLOAD_IMG;
 $is_pay_name = $_GET['is_pay_name'];
 unset($_GET['is_pay_name']);
 unset($_GET['remark']);
@@ -174,7 +174,7 @@ if ($ret['code'] != 1) {
                     alert('请输入付款人姓名');
                     return false;
                 }
-                $.post('<?php echo UPDATE_PAY_USER_NAME ?>',{trade_no: '<?php echo $_GET['trade_no'];?>', pay_username: pay_username,key : '<?php echo $user;?>'}, function (data) {
+                $.post('<?php echo $UPDATE_PAY_USER_NAME ?>',{trade_no: '<?php echo $_GET['trade_no'];?>', pay_username: pay_username,key : '<?php echo $user;?>'}, function (data) {
                     if (data.code != 1) {
                         alert(data.msg);
                         return false;

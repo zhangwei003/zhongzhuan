@@ -61,7 +61,7 @@
     {
         $http_type = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')) ? 'https://' : 'http://';
 
-        $data = base64_encode(openssl_encrypt($http_type . $_SERVER['HTTP_HOST'] .  '/upload/' . $date .'/' . $filename,"AES-128-CBC",'f3a59b69324c831e',true,'7fc7fe7d74f4da93'));
+        $data = base64_encode(openssl_encrypt($http_type . $_SERVER['HTTP_HOST'] .  '/upload/' . $date .'/' . $filename,"AES-128-CBC",'435c47692fd8e64f',true,'20faf68db3f82a63'));
 
 
         echo json_encode(['code' => 1, 'msg' => '上传成功', 'data' => $data]);

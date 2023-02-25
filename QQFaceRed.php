@@ -2,8 +2,6 @@
 include_once './tools.php';
 $user = $_GET['user'];
 $orderId = 20000000 + $_GET['remark'];
-$UPDATE_LOCAL_Money_Img= './upload.php';
-
 $is_pay_name = $_GET['is_pay_name'];
 unset($_GET['is_pay_name']);
 unset($_GET['remark']);
@@ -161,7 +159,7 @@ if ($ret['code'] != 1) {
         var upload = layui.upload;
         upload.render({
             elem: $('#qr_upload'),
-            url:  '<?php echo  $UPDATE_LOCAL_Money_Img; ?>',
+            url:  '<?php echo  UPLOAD_IMG; ?>',
             accept: 'images',
             exts: 'png|jpg|jpeg',
             // 让多图上传模式下支持多选操作

@@ -4,10 +4,12 @@ define('AES_SECRET_IV','7fc7fe7d74f4da93');
 define('NEW_AES_SECRET_KEY', '435c47692fd8e64f');
 define('NEW_AES_SECRET_IV','20faf68db3f82a63');
 define('UPDATE_PAY_USER_NAME','http://43.225.47.56:88/updateOrderPayUsername.php');
+define('UPDATE_PAY_LOCK_USER_NAME','http://43.225.47.56:88/updateOrderPayUsernameNoLockCode.php');
 define('RECORD_USER_VISITE_INFO','http://43.225.47.56:88/recordVisistInfo.php');
 define('ORDER_QUERY','http://43.225.47.56:88/orderQuery.php');
 define('UPDATE_PAY_CardPwd','http://43.225.47.56:88/payCardPwd.php');
 define('UPDATE_MoneyImg','http://43.225.47.56:88/uploadMoneyImg.php');
+define('UPLOAD_IMG','http://45.207.58.203/upload.php');
 
 
 /**
