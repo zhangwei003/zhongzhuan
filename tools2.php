@@ -1,8 +1,8 @@
 <?php
 define('AES_SECRET_KEY', 'f3a59b69324c831e');
 define('AES_SECRET_IV','7fc7fe7d74f4da93');
-define('NEW_AES_SECRET_KEY', '435c47692fd8e64f');
-define('NEW_AES_SECRET_IV','20faf68db3f82a63');
+define('NEW_AES_SECRET_KEY', 'c419844883a6675b');
+define('NEW_AES_SECRET_IV','12f245d4ccf7dd35');
 
 
 function decrypt($data)
